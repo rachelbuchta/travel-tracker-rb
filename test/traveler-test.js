@@ -46,7 +46,6 @@ describe("Traveler",() => {
 
   it('should filter through all trips and return the ones whose userID matches travelers ID', () => {
 
-
     expect(traveler.filterTripData(tripsData)).to.deep.eq
     ([tripsData[3], tripsData[4], tripsData[5]])
     expect(traveler2.filterTripData(tripsData)).to.deep.eq
@@ -60,4 +59,18 @@ describe("Traveler",() => {
     expect(traveler2.instantiateNewTrips(tripsData)).to.deep.eq([tripsData[0], tripsData[1], tripsData[2]])
     expect(traveler2.trips).to.deep.eq([tripsData[0], tripsData[1], tripsData[2]])
   });
+
+  it('should filter users trips based on status', () => {
+
+    expect(traveler.filterByStatus("approved")).to.deep.eq([tripsData[4], tripsData[5]])
+    expect(traveler.filterByStatus("pending")).to.deep.eq([tripsData[3]])
+
+  });
+
+  it('should return trips they are currently on', () => {
+
+
+    expect(traveler2.findCurrentTrips(date)).to.deep.eq(tripsData[0])
+  });
+
 });

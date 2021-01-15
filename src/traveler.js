@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-
 import Trip from "./trip";
 
 export default class Traveler {
@@ -17,5 +16,13 @@ filterTripData(tripsData) {
 instantiateNewTrips(tripsData) {
   return this.filterTripData(tripsData).map(data => new Trip(data))
 }
+
+filterByStatus(status) {
+  return this.trips.filter(trip => trip.status === status)
+}
+
+// findCurrentTrips(date) {
+//   return this.trips.find(trip => trip.date)
+// }
 
 }
