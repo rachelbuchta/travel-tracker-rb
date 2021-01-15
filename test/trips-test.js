@@ -23,7 +23,7 @@ describe("Trips",() => {
    
   });
 
-  it('should initialize with an id', () => {    
+  it('should have an id', () => {    
     
    
   });
