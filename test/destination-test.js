@@ -8,8 +8,8 @@ describe("Destination",() => {
   let destination;
 
   beforeEach(() => {
-    destination = new Destination(destinationData[0]);
 
+    destination = new Destination(destinationData[0]);
   });
 
   it("is a function", () => {
@@ -20,7 +20,6 @@ describe("Destination",() => {
   it('should be an instance of Destination', () => {
 
     expect(destination).to.be.an.instanceof(Destination);
-   
   });
 
   it('should have an id', () => {    
