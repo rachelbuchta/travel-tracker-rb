@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import Trip from "./trip";
+import Destination from "./destination"
 
 export default class Traveler {
   constructor(travelerData, tripsData) {
@@ -21,8 +22,15 @@ filterByStatus(status) {
   return this.trips.filter(trip => trip.status === status)
 }
 
+returnTravelerFirstName() {
+  const firstName = this.name.split(" ")[0]
+  return firstName
+}
+
 // findCurrentTrips(date) {
 //   return this.trips.find(trip => trip.date)
 // }
+
+
 
 }

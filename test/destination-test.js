@@ -51,4 +51,6 @@ describe("Destination",() => {
     
    expect(destination.alt).to.eq("overview of city buildings with a clear sky");
   });
+
+  it('should ')
 });

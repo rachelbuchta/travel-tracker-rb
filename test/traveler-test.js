@@ -4,6 +4,8 @@ import { expect } from 'chai';
 import Traveler from '../src/traveler';
 import travelerData from '../src/data/traveler-test-data'
 import tripsData from '../src/data/trip-test-data'
+import Destination from '../src/destination';
+import destinationData from '../src/data/destination-test-data'
 
 describe("Traveler",() => {
   let traveler;
@@ -72,5 +74,10 @@ describe("Traveler",() => {
 
     expect(traveler2.findCurrentTrips(date)).to.deep.eq(tripsData[0])
   });
+
+  it('should return travelers first name', () => {
+
+    expect(traveler.returnTravelerFirstName()).to.eq("Rachael")
+  })
 
 });
