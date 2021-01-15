@@ -1,25 +1,25 @@
 /* eslint-disable max-len */
 import { expect } from 'chai';
 
-import Traveler from '../src/traveler';
-import travelerData from '..src/data/traveler-test-data'
+import Trips from '../src/trips';
+import tripsData from '..src/data/trips-test-data'
 
-describe("Traveler",() => {
-  let traveler;
+describe("Trips",() => {
+  let trips;
 
   beforeEach(() => {
-    traveler = new Traveler(travelerData);
+    trips = new Trips(tripsData);
 
   });
 
   it("is a function", () => {
 
-    expect(Traveler).to.be.a("function");
+    expect(Trips).to.be.a("function");
   });
 
-  it('should be an instance of Traveler', () => {
+  it('should be an instance of Trips', () => {
 
-    expect(traveler).to.be.an.instanceof(Traveler);
+    expect(trips).to.be.an.instanceof(Trips);
    
   });
 

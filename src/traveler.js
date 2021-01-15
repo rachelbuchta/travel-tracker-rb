@@ -6,7 +6,7 @@ export default class Traveler {
     this.travelerType = travelerData.travelerType;
   }
 
-  returnFirstName {
-    const firstName = this.name
-  }
+  // returnFirstName {
+  //   const firstName = this.name
+  // }
 }
