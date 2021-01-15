@@ -1,8 +1,9 @@
+/* eslint-disable max-len */
 export default class Traveler {
-  constructor() {
-    this.id = id;
-    this.name = name;
-    this.travelerType = travelerType;
+  constructor(travelerData) {
+    this.id = travelerData.id;
+    this.name = travelerData.name;
+    this.travelerType = travelerData.travelerType;
   }
 
   returnFirstName {
