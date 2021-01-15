@@ -2,7 +2,7 @@
 import { expect } from 'chai';
 
 import Trip from '../src/trip';
-import tripsData from '..src/data/trip-test-data'
+import tripsData from '../src/data/trip-test-data'
 
 describe("Trip",() => {
   let currentTrip;
@@ -11,9 +11,9 @@ describe("Trip",() => {
 
   beforeEach(() => {
 
-    currentTrip = new Trip(tripsData);
-    approvedTrip = new Trip(tripsData);
-    pendingTrip = new Trip(tripsData);
+    currentTrip = new Trip(tripsData[0]);
+    approvedTrip = new Trip(tripsData[1]);
+    pendingTrip = new Trip(tripsData[3]);
   });
 
   it("is a function", () => {
@@ -72,9 +72,9 @@ describe("Trip",() => {
 
   it('should have a status', () => {    
     
-    expect(currentTrip.date).to.eq("approved");
-    expect(approvedTrip.date).to.eq("approved");
-    expect(pendingTrip.date).to.eq("pending");
+    expect(currentTrip.status).to.eq("approved");
+    expect(approvedTrip.status).to.eq("approved");
+    expect(pendingTrip.status).to.eq("pending");
 });
 
 });

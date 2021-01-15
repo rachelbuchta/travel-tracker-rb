@@ -1,5 +1,4 @@
-let testTrips = {
-    "trips": [
+let testTrips = [
         {
           "id": 182,
           "userID": 9,
@@ -61,6 +60,5 @@ let testTrips = {
           "suggestedActivities": []
         }
     ]
-};
 
 export default testTrips;

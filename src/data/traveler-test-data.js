@@ -1,5 +1,4 @@
-let travelersTest = { 
-  "travelers": [
+let travelersTest = [
         {
           "id": 2,
           "name": "Rachael Vaughten",
@@ -11,6 +10,5 @@ let travelersTest = {
           "travelerType": "relaxer"
         }
     ]
-}
 
 export default travelersTest;

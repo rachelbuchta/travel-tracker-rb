@@ -2,13 +2,13 @@
 import { expect } from 'chai';
 
 import Destination from '../src/destination';
-import destinationData from '..src/data/destination-test-data'
+import destinationData from '../src/data/destination-test-data'
 
 describe("Destination",() => {
   let destination;
 
   beforeEach(() => {
-    destination = new Destination(destinationData);
+    destination = new Destination(destinationData[0]);
 
   });
 
@@ -34,7 +34,7 @@ describe("Destination",() => {
   });
 
   it('should have an estimate cost of lodging per day', () => {    
-  
+
     expect(destination.estimatedLodgingCostPerDay).to.eq(70);
   });
 

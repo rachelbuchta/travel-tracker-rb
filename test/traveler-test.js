@@ -2,15 +2,15 @@
 import { expect } from 'chai';
 
 import Traveler from '../src/traveler';
-import travelerData from '..src/data/traveler-test-data'
+import travelerData from '../src/data/traveler-test-data'
 
 describe("Traveler",() => {
   let traveler;
   let traveler2;
 
   beforeEach(() => {
-    traveler = new Traveler(travelerData);
-    traveler2 = new Traveler(travelerData);
+    traveler = new Traveler(travelerData[0]);
+    traveler2 = new Traveler(travelerData[1]);
 
   });
 
