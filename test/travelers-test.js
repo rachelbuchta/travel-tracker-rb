@@ -20,11 +20,29 @@ describe("Traveler",() => {
   it('should be an instance of Traveler', () => {
 
     expect(traveler).to.be.an.instanceof(Traveler);
-   
   });
 
-  it('should initialize with an id', () => {    
-    
-   
+  it('should have an id', () => {    
+
+    expect(traveler.id).to.eq(2)
   });
+
+  it('should have a name', () => {
+
+    expect(traveler.name).to.eq("Rachael Vaughten")
+  });
+
+  it('should have a traveler type', () => {
+
+    expect(traveler.travelerType).to.eq("thrill-seeker")
+  });
+
+  it('should hold an array of trips', () => {
+
+    trips = new Trips(tripData)
+
+    expect(traveler.trips).to.deep.eq(trips)
+  });
+
+
 });
