@@ -1,4 +1,4 @@
-export default class traveler {
+export default class Traveler {
   constructor() {
     this.id = id;
     this.name = name;
