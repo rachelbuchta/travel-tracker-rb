@@ -2,9 +2,9 @@
 import { expect } from 'chai';
 
 import Trip from '../src/trip';
-import tripsData from '..src/data/trips-test-data'
+import tripsData from '..src/data/trip-test-data'
 
-describe("Trips",() => {
+describe("Trip",() => {
   let currentTrip;
   let approvedTrip;
   let pendingTrip;
@@ -21,7 +21,7 @@ describe("Trips",() => {
     expect(Trip).to.be.a("function");
   });
 
-  it('should be an instance of Trips', () => {
+  it('should be an instance of Trip', () => {
 
     expect(currentTrip).to.be.an.instanceof(Trip);
     expect(approvedTrip).to.be.an.instanceof(Trip);
@@ -44,9 +44,9 @@ describe("Trips",() => {
 
   it('should have a destination ID', () => {    
     
-    expect(currentTrip.destinationID).to.eq(45);
-    expect(approvedTrip.destinationID).to.eq(50);
-    expect(pendingTrip.destinationID).to.eq(43);
+    expect(currentTrip.destinationID).to.eq(1);
+    expect(approvedTrip.destinationID).to.eq(2);
+    expect(pendingTrip.destinationID).to.eq(4);
 });
 
   it('should hold number of travelers', () => {    
