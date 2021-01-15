@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-export default class Trips {
+export default class Trip {
   constructor(tripsData) {
     this.id = tripsData.id;
     this.userID = tripsData.userID;

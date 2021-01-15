@@ -40,7 +40,7 @@ describe("Traveler",() => {
   it('should have a traveler type', () => {
 
     expect(traveler.travelerType).to.eq("thrill-seeker")
-    expect(traveler2.travelerType).to.eq("thrill-seeker")
+    expect(traveler2.travelerType).to.eq("relaxer")
   });
 
   it('should hold an array of trips', () => {
