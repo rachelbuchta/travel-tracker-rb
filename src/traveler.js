@@ -41,13 +41,6 @@ findTripsThisYear() {
   const findDates = date.map(date => new Date(date))
   const filterDates = findDates.filter(item => item.getFullYear() === 2021)
   const indexOfDate = findDates.indexOf(2021)
-
-
-  
-  console.log(indexOfDate)
-  console.log(findDates)
-  console.log(filterDates)
-
 }
 
 calculateTotalSpentOnTrips(destinationData) {
@@ -56,9 +49,6 @@ calculateTotalSpentOnTrips(destinationData) {
  return sum  
  },0)
 }
-
-
-
 
 
 }

@@ -25,6 +25,18 @@ export default class Trip {
     return duration + flights
   }
 
+  calculateAgentFee(destinationData) {
+    const dollars = (this.calculateCostOfTrip(destinationData) / 100) * 10
+     return dollars
+  }
+
+  costOfTripAndFee(destinationData) {
+    return {
+      total: this.calculateCostOfTrip(destinationData),
+      totalPlusFees: this.calculateAgentFee(destinationData) + this.calculateCostOfTrip(destinationData)
+    }
+  }
+
 
 
 

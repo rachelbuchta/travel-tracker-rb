@@ -89,7 +89,7 @@ describe("Traveler",() => {
   it('should calculate total amount spent on trips this year', () => {
 
     expect(traveler2.calculateTotalSpentOnTrips()).to.eq(4500)
-    expect(traveler1.calculateTotalSpentOnTrips()).to.eq(0)
+    expect(traveler.calculateTotalSpentOnTrips()).to.eq(0)
   })
 
 });

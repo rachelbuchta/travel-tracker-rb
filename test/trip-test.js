@@ -86,11 +86,20 @@ describe("Trip",() => {
   expect(pendingTrip.findDestination(destinationData)).to.deep.eq(destinationData[3]);
   });
 
-  it('should calculate total cost of trip for that destination', () =>{
+  it('should calculate total cost of trip for that destination', () => { 
 
     expect(currentTrip.calculateCostOfTrip(destinationData)).to.eq(4500)
     expect(approvedTrip.calculateCostOfTrip(destinationData)).to.eq(14880)
+  })
 
+  it('should add 10% to the total cost of trip', () => {
+
+    expect(currentTrip.calculateAgentFee(destinationData)).to.eq(450)
+  })
+
+  it('should return total cost of trip plus fees', () => {
+
+    expect(currentTrip.costOfTripAndFee(destinationData)).to.deep.eq({total: 4500, totalPlusFees: 4950})
   })
 
 });
