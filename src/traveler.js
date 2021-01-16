@@ -19,7 +19,16 @@ instantiateNewTrips(tripsData) {
 }
 
 filterByStatus(status) {
-  return this.trips.filter(trip => trip.status === status)
+  const trips = this.trips.filter(trip => trip.status === status)
+  return trips
+}
+
+findCurrentTrips(tripsData) {
+  const date = this.trips.map(trip => trip.date)
+  const findDates = date.map(date => new Date(date))
+  const findCurrent = this.trips.find(trip => trip.date.includes(new Date()))
+  console.log(findDates)
+  console.log(new Date())
 }
 
 returnTravelerFirstName() {
@@ -27,9 +36,28 @@ returnTravelerFirstName() {
   return firstName
 }
 
-// findCurrentTrips(date) {
-//   return this.trips.find(trip => trip.date)
-// }
+findTripsThisYear() {
+  const date = this.trips.map(trip => trip.date)
+  const findDates = date.map(date => new Date(date))
+  const filterDates = findDates.filter(item => item.getFullYear() === 2021)
+  const indexOfDate = findDates.indexOf(2021)
+
+
+  
+  console.log(indexOfDate)
+  console.log(findDates)
+  console.log(filterDates)
+
+}
+
+calculateTotalSpentOnTrips(destinationData) {
+ return this.findTripsThisYear.reduce((sum, trip) => {
+  sum += trip.calculateCostOfTrip(destinationData)
+ return sum  
+ },0)
+}
+
+
 
 
 

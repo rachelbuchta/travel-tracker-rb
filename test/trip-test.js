@@ -3,6 +3,8 @@ import { expect } from 'chai';
 
 import Trip from '../src/trip';
 import tripsData from '../src/data/trip-test-data'
+import Destination from "../src/destination"
+import destinationData from '../src/data/destination-test-data'
 
 describe("Trip",() => {
   let currentTrip;
@@ -76,5 +78,19 @@ describe("Trip",() => {
     expect(approvedTrip.status).to.eq("approved");
     expect(pendingTrip.status).to.eq("pending");
 });
+
+  it('should find the destination data by the id', () => {
+
+  expect(currentTrip.findDestination(destinationData)).to.deep.eq(destinationData[0]);
+  expect(approvedTrip.findDestination(destinationData)).to.deep.eq(destinationData[1]);
+  expect(pendingTrip.findDestination(destinationData)).to.deep.eq(destinationData[3]);
+  });
+
+  it('should calculate total cost of trip for that destination', () =>{
+
+    expect(currentTrip.calculateCostOfTrip(destinationData)).to.eq(4500)
+    expect(approvedTrip.calculateCostOfTrip(destinationData)).to.eq(14880)
+
+  })
 
 });

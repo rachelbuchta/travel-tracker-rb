@@ -9,11 +9,11 @@ export default class Destination {
     this.alt = destinationData.alt;
   }
 
-  returnLodgingCostPerDay() {
-    return this.estimatedLodgingCostPerDay;
-  }
+  // returnLodgingCostPerDay() {
+  //   return this.estimatedLodgingCostPerDay;
+  // }
 
-  returnFlightCostPerPerson() {
-    return this.estimatedFlightCostPerPerson;
-  }
+  // returnFlightCostPerPerson() {
+  //   return this.estimatedFlightCostPerPerson;
+  // }
 }

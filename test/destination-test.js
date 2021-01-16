@@ -50,7 +50,5 @@ describe("Destination",() => {
   it('should have an alt text', () => {    
     
    expect(destination.alt).to.eq("overview of city buildings with a clear sky");
-  });
-
-  it('should ')
-});
+  })
+})

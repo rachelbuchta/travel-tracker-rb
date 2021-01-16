@@ -65,6 +65,7 @@ describe("Traveler",() => {
   it('should filter users trips based on status', () => {
 
     expect(traveler.filterByStatus("approved")).to.deep.eq([tripsData[4], tripsData[5]])
+    
     expect(traveler.filterByStatus("pending")).to.deep.eq([tripsData[3]])
 
   });
@@ -72,12 +73,23 @@ describe("Traveler",() => {
   it('should return trips they are currently on', () => {
 
 
-    expect(traveler2.findCurrentTrips(date)).to.deep.eq(tripsData[0])
+    expect(traveler2.findCurrentTrips(tripsData)).to.deep.eq(tripsData[0])
   });
 
   it('should return travelers first name', () => {
 
     expect(traveler.returnTravelerFirstName()).to.eq("Rachael")
+  });
+
+  it('should return trips taken this year', () => {
+
+    expect(traveler2.findTripsThisYear()).to.eq(tripsData[0])
+  })
+
+  it('should calculate total amount spent on trips this year', () => {
+
+    expect(traveler2.calculateTotalSpentOnTrips()).to.eq(4500)
+    expect(traveler1.calculateTotalSpentOnTrips()).to.eq(0)
   })
 
 });
