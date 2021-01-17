@@ -29,7 +29,7 @@
           <img>
         </section>
       </header>
-      <section class="my-trips">
+      <section class="my-trips hidden">
         <article>
           <h2>My Trips</h2>
           <div>
@@ -37,13 +37,47 @@
           </div>
           <h3>You've Spent $197483 On Trips This Year.</h3>
         </article>
-        <section class="trip-card-section">
-
+        <article>
+          <section class="trip-card-section">
+            <section class="current-trips">
+              <h2>Current Trips</h2>
+            </section>  
+            <section class="pending-trips">
+              <h2>Pending Trips</h2>
+            </section>
+            <section class="approved-trips">
+              <h2>Approved Trips</h2>
+            </section>
+            <section class="past-trips">
+              <h2>Past Trips</h2>
+            </section>
+          </section>
         </article>
         </section>
+        <section class="book-trip-page hidden">
+          <h2>Book A Trip</h2>
+          <div>
+            <button class="back-to-main">Back To Main</button>
+          </div>
+            <h3>Where Would You Like To Go Next?</h3>
+          <form>
+            <label for="destination">Destination:</label><br>
+            <select name="destination" id="destination">
+            <option value="sydney">Sydney</option>
+            <option value="melbourne">Melbourne</option>
+            </select><br>
+            <label for="start">Start date:</label><br>
+            <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31"><br>
+            <label for="travelers">Number Of Travelers:</label><br>
+            <select name="travelers" id="travelers"><br>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            </select><br>
+            <input type="submit" value="Book!">
+          </form>
+        </section>
+        </article>
       </section>
     </main>
-
-    
   </body>
 </html>
