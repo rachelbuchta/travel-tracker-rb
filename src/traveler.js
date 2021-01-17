@@ -52,3 +52,28 @@ calculateTotalSpentOnTrips(destinationData) {
 
 
 }
+
+// function formatDate(today, joinBy) {
+//     today = new Date(today);
+//     let month = '' + (today.getMonth() + 1);
+//     let day = '' + today.getDate();
+//     let year = today.getFullYear();
+
+//     if (month.length < 2) {
+//       month = '0' + month
+//     }
+
+//     if (day.length < 2) {
+//       day = '0' + day
+//     }
+
+//     return [year, month, day].join("" /);
+// }
+
+// function updateDate(event) {
+//   today = new Date(event.target.value).toDateString();
+//   hotel.date = today;
+//   hotel.userDirectory.currentUser.bookingService.sortBookingsByDate(today);
+//   displayAvailableRooms();
+// }
+/* <input type="date" id="calendar" name="date"></input> */
