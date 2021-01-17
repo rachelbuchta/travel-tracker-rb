@@ -23,12 +23,17 @@ const myTripsBtn = document.querySelector(".my-trips-btn")
 const bookButton = document.querySelector(".book-trip")
 const myTripsPage = document.querySelector(".my-trips")
 const backToMain = document.querySelector(".back-to-main")
+const backToMainBook = document.querySelector(".back-to-main-book")
 const bookingPage = document.querySelector(".book-trip-page")
 const submitBookingBtn = document.querySelector(".booking-button")
 
 //eventListeners
 window.addEventListener('load', initiateData)
 loginButton.addEventListener("click", hideLoginPage)
+myTripsBtn.addEventListener('click', hideMainPage)
+backToMain.addEventListener('click', goBackToMain)
+bookButton.addEventListener('click', bookATrip)
+backToMainBook.addEventListener('click', backToMainFromBook)
 
 function initiateData() {
  let travelerData = fetchCalls.getTraveler(1) 
@@ -53,10 +58,23 @@ function hideLoginPage() {
   
 }
 
-// function showWelcomePage() {
-//   welcomePage.classList.remove("hidden")
-//   loginPage.classList.add("hidden")
-// }
-  // savedPostersView.classList.add("hidden");
-  // posterFormView.classList.add("hidden")
+function hideMainPage() {
+  welcomePage.classList.add("hidden")
+  myTripsPage.classList.remove("hidden")
+}
+
+function goBackToMain() {
+  welcomePage.classList.remove("hidden")
+  myTripsPage.classList.add("hidden")
+}
+
+function bookATrip() {
+  welcomePage.classList.add("hidden")
+  bookingPage.classList.remove("hidden")
+}
+
+function backToMainFromBook() {
+  welcomePage.classList.remove("hidden")
+  bookingPage.classList.add("hidden")
+}
 

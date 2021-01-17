@@ -65,3 +65,8 @@ form {
     }
 }
 
+.my-trips-container {
+  @include flexDisplay(column, center);
+  height: 100vh;
+}
+
