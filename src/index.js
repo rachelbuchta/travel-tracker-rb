@@ -9,13 +9,11 @@ import fetchCalls from './apiCalls'
 import './css/base.scss';
 
 
-let traveler;
-let trip;
-let destination;
-let travelerData;
-let allTravelersData;
-let tripsData;
-let destinationsData;
+let currentTraveler;
+let allTrips;
+let allDestinations;
+let allTravelers;
+
 
 
 import './images/turing-logo.png'
@@ -23,15 +21,21 @@ import './images/turing-logo.png'
 
 
 const initiateData = () => {
-  console.log("HI")
-  const data = Promise.all([fetchCalls.getTraveler(1), fetchCalls.getTrips(), fetchCalls.getDestinations()])
-  .then(data => {
-    traveler = new Traveler(data[0]);
-    console.log(trip = new Trip(data[1]));
-    destination = new Destination(data[2]);
+ let travelerData = fetchCalls.getTraveler(1) 
+ let tripData = fetchCalls.getTrips() 
+ let destinationData = fetchCalls.getDestinations()
+ let allTravelerData = fetchCalls.getAllTravelers()
+  return Promise.all([tripData, destinationData, allTravelerData, travelerData])
+  .then(responses => {
+    allTrips = responses[0]
+    allDestinations = responses[1]
+    allTravelers = responses[2]
+    currentTraveler = responses[3]
+    console.log(allTrips)
+    console.log(currentTraveler)
   })
-console.log(data.traveler)
-return data
+
+
 }
 window.addEventListener('load', initiateData)
 

@@ -2,12 +2,48 @@
 <html lang="en-US">
   <head>
     <title>Webpack Starter Kit</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <h1>Webpack Starter Kit</h1>
+    <section class="login-container hidden">
+      <form>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="pwd">Password:</label><br>
+        <input type="password" id="pwd" name="pwd"><br>
+        <input type="submit" value="Log In">
+      </form>
+    </section>
+    <main>
+      <header class="welcome-page hidden">
+        <h1>Welcome!</h1>
+        <article class="greeting-container">
+          <h2>Your Adventure Begins Here.</h2>
+        </article>
+        <section class="options-container">
+          <button class="my-trips-btn">My Trips</button>
+          <button class="book-trip">Book A Trip</button>
+        </section>
+        <section class="welcome-image">
+          <img>
+        </section>
+      </header>
+      <section class="my-trips">
+        <article>
+          <h2>My Trips</h2>
+          <div>
+            <button class="back-to-main">Back To Main</button>
+          </div>
+          <h3>You've Spent $197483 On Trips This Year.</h3>
+        </article>
+        <section class="trip-card-section">
 
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
+        </article>
+        </section>
+      </section>
+    </main>
 
-    <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
+    
   </body>
 </html>
