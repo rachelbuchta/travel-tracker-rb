@@ -7,8 +7,8 @@ export default class Trip {
     this.userID = tripsData.userID;
     this.destinationID = tripsData.destinationID;
     this.travelers = tripsData.travelers;
-    // this.date = tripsData.date;
-    this.date = this.formatDate(tripData.date);
+    this.date = tripsData.date;
+    // this.date = this.formatDate(tripData.date);
     this.duration = tripsData.duration;
     this.status = tripsData.status;
     this.suggestedActivities = tripsData.suggestedActivities;
@@ -38,24 +38,18 @@ export default class Trip {
     }
   }
 
-formatDate(tripDate) {
-    let today = new Date(tripDate);
-    let month = '' + (today.getMonth() + 1);
-    let day = '' + today.getDate();
-    let year = today.getFullYear();
-    if (month.length < 2) {
-      month = '0' + month
-    }
-    if (day.length < 2) {
-      day = '0' + day
-    }
-    return [year, month, day].join("/");
-}
-
-
-
-
-
-
+// formatDate(tripDate) {
+//     let today = new Date(tripDate);
+//     let month = '' + (today.getMonth() + 1);
+//     let day = '' + today.getDate();
+//     let year = today.getFullYear();
+//     if (month.length < 2) {
+//       month = '0' + month
+//     }
+//     if (day.length < 2) {
+//       day = '0' + day
+//     }
+//     return [year, month, day].join("/");
+// }
 
 }

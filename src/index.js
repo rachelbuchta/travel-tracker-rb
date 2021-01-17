@@ -9,7 +9,7 @@ import './css/base.scss';
 import './images/image.png';
 // import './images/search.png';
 
-//global variables
+//globalVariables
 let currentTraveler;
 let allTrips;
 let allDestinations;
@@ -26,14 +26,11 @@ const backToMain = document.querySelector(".back-to-main")
 const bookingPage = document.querySelector(".book-trip-page")
 const submitBookingBtn = document.querySelector(".booking-button")
 
+//eventListeners
+window.addEventListener('load', initiateData)
+loginButton.addEventListener("click", hideLoginPage)
 
-
-
-
-
-
-
-const initiateData = () => {
+function initiateData() {
  let travelerData = fetchCalls.getTraveler(1) 
  let tripData = fetchCalls.getTrips() 
  let destinationData = fetchCalls.getDestinations()
@@ -47,8 +44,19 @@ const initiateData = () => {
     console.log(allTrips)
     console.log(currentTraveler)
   })
-
-
 }
-window.addEventListener('load', initiateData)
+
+function hideLoginPage() {
+  event.preventDefault()
+  loginPage.classList.add("hidden")
+  welcomePage.classList.remove("hidden")
+  
+}
+
+// function showWelcomePage() {
+//   welcomePage.classList.remove("hidden")
+//   loginPage.classList.add("hidden")
+// }
+  // savedPostersView.classList.add("hidden");
+  // posterFormView.classList.add("hidden")
 
