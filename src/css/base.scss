@@ -10,8 +10,21 @@ body {
   padding: 0;
 }
 
+header {
+@include flexDisplay(column, start);
+padding: 2%;
+justify-content: center;
+align-self: center;
+height: 20vh;
+background-color: #5296AC;
+width: 100%;
+color: #B0C6D5;
+}
+
 h1 {
-  height: 20vh
+  padding: 3%;
+  font-size: 3em;
+
 }
 
 .login-page {
@@ -47,6 +60,8 @@ form {
   @include flexDisplay(column, start);
   height: 80vh;
   align-items: center;
+  background-color: #EACDC0;
+  color: #FEFEFE;
 
 }
 
@@ -54,6 +69,7 @@ form {
   @include flexDisplay(column, center);
   align-items: center;
   width: 100%;
+
 }
 
 .options-container {
@@ -63,14 +79,65 @@ form {
 
     .my-trips-btn,
     .book-trip {
-      border: 3px outset blue;
+      border: 3px outset #5296AC;
       border-radius: 0px 15px 15px 0px;
       padding: 1%;
     }
 }
 
-.my-trips-container {
-  @include flexDisplay(column, center);
-  height: 80vh;
+.booking-button,
+.back-to-main-book,
+.back-to-main {
+  border: 3px outset #5296AC;
+  border-radius: 0px 15px 15px 0px;
+  padding: 1%;
 }
+
+.my-trips-container {
+  @include flexDisplay(column, start);
+  height: 80vh;
+  
+}
+
+.header-wrapper {
+  @include flexDisplay(column, start);
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+  background-color: #B0C6D5;
+  color: #FEFEFE;
+}
+
+.trip-card-section {
+  @include flexDisplay(row, start);
+  justify-content: space-around;
+  background-color: #EACDC0;
+  height: 80%;
+  color: #FEFEFE;
+}
+
+.book-trip-page {
+  height: 80vh;
+  // @include flexDisplay(column, center);
+  background-color: #EACDC0;
+}
+
+.book-wrapper {
+  @include flexDisplay(column, center);
+  // height: 100vh;
+  align-items: center;
+  color: #FEFEFE;
+  justify-items: center;
+  justify-content: center;
+  background-color: #EACDC0;
+
+}
+
+form {
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+
 

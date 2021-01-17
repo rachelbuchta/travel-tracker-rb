@@ -34,7 +34,7 @@
       </section>
       <section class="my-trips hidden">
         <article class="my-trips-container">
-          <section class="header-wrapper"
+          <section class="header-wrapper">
             <h2>My Trips</h2>
             <div>
               <button class="back-to-main">Back To Main</button>
@@ -60,27 +60,29 @@
           </section>
         </article>
         <section class="book-trip-page hidden">
-          <h2>Book A Trip</h2>
-          <div>
-            <button class="back-to-main-book">Back To Main</button>
-          </div>
-            <h3>Where Would You Like To Go Next?</h3>
-          <form>
-            <label for="destination">Destination:</label><br>
-            <select name="destination" id="destination">
-            <option value="sydney">Sydney</option>
-            <option value="melbourne">Melbourne</option>
-            </select><br>
-            <label for="start">Start date:</label><br>
-            <input type="date" id="calendar" name="date"></input><br>
-            <label for="travelers">Number Of Travelers:</label><br>
-            <select name="travelers" id="travelers"><br>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            </select><br>
-            <input class="booking-button" type="submit" value="Book!">
-          </form>
-        </section>
+          <section class="book-wrapper">
+            <h2>Book A Trip</h2>
+            <div>
+              <button class="back-to-main-book">Back To Main</button>
+            </div>
+              <h3>Where Would You Like To Go Next?</h3>
+            <form>
+              <label for="destination">Destination:</label><br>
+              <select name="destination" id="destination">
+              <option value="sydney">Sydney</option>
+              <option value="melbourne">Melbourne</option>
+              </select><br>
+              <label for="start">Start date:</label><br>
+              <input type="date" id="calendar" name="date"></input><br>
+              <label for="travelers">Number Of Travelers:</label><br>
+              <select name="travelers" id="travelers"><br>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              </select><br>
+              <input class="booking-button" type="submit" value="Book!">
+            </form>
+           </section>
+          </section>
         </article>
       </section>
     </main>

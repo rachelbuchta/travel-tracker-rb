@@ -14,6 +14,13 @@ let currentTraveler;
 let allTrips;
 let allDestinations;
 let allTravelers;
+let currentUser;
+let tripInfo;
+let userTrips;
+ let travelerData
+ let tripData 
+ let destinationData
+ let allTravelerData 
 
 //querySelectors
 const loginButton = document.querySelector(".login-button")
@@ -28,27 +35,49 @@ const bookingPage = document.querySelector(".book-trip-page")
 const submitBookingBtn = document.querySelector(".booking-button")
 
 //eventListeners
-window.addEventListener('load', initiateData)
+window.addEventListener('load', getData)
 loginButton.addEventListener("click", hideLoginPage)
 myTripsBtn.addEventListener('click', hideMainPage)
 backToMain.addEventListener('click', goBackToMain)
 bookButton.addEventListener('click', bookATrip)
 backToMainBook.addEventListener('click', backToMainFromBook)
 
+function getData() {
+ travelerData = fetchCalls.getTraveler(1) 
+ tripData = fetchCalls.getTrips() 
+ destinationData = fetchCalls.getDestinations()
+ allTravelerData = fetchCalls.getAllTravelers()
+ initiateData()
+}
+
 function initiateData() {
- let travelerData = fetchCalls.getTraveler(1) 
- let tripData = fetchCalls.getTrips() 
- let destinationData = fetchCalls.getDestinations()
- let allTravelerData = fetchCalls.getAllTravelers()
-  return Promise.all([tripData, destinationData, allTravelerData, travelerData])
+  return Promise.all([travelerData, destinationData, tripData])
   .then(responses => {
-    allTrips = responses[0]
-    allDestinations = responses[1]
-    allTravelers = responses[2]
-    currentTraveler = responses[3]
-    console.log(allTrips)
-    console.log(currentTraveler)
+    currentTraveler = responses[0];
+    allDestinations = responses[1];
+    tripInfo = responses[2];
+    const test = tripInfo.map(trip => {
+      userTrips = new Trip(trip)
+      allTrips.push(userTrips)
+    })
+    return test
+    console.log(tripInfo)
+    
+    
+    // greetUser()
   })
+  
+}
+
+// const travelerProfile() {
+//   currentTraveler = new Traveler()
+// }
+// build page - traveler profile and display trips - create traveker profile -instantiaite traveler
+//display trips - 
+// traveler - instantate it there
+function greetUser(currentTraveler, allTrips, allDestinations) {
+
+  currentUser = new Traveler(currentTraveler, allTrips, allDestinations)
 }
 
 function hideLoginPage() {
