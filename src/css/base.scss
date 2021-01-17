@@ -10,6 +10,10 @@ body {
   padding: 0;
 }
 
+h1 {
+  height: 20vh
+}
+
 .login-page {
   @include flexDisplay(column, center);
   height: 100vh;
@@ -41,7 +45,7 @@ form {
 
 .welcome-container {
   @include flexDisplay(column, start);
-  height: 100vh;
+  height: 80vh;
   align-items: center;
 
 }
@@ -67,6 +71,6 @@ form {
 
 .my-trips-container {
   @include flexDisplay(column, center);
-  height: 100vh;
+  height: 80vh;
 }
 
