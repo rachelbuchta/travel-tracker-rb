@@ -6,44 +6,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <section class="login-container hidden">
+    <header>
+      <h1>Travel Tracker</h1>
+    </header>
+    <section class="login-page hidden" style="background-image: url('./images/image.png');">
       <form>
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username"><br>
-        <label for="pwd">Password:</label><br>
-        <input type="password" id="pwd" name="pwd"><br>
-        <input type="submit" value="Log In">
+        <input type="text" id="username" name="username" placeholder="Username"><br>
+        <input type="password" id="pwd" name="pwd" placeholder="Password"><br>
+        <input class="login-button" type="submit" value="Log In">
       </form>
     </section>
     <main>
-      <header class="welcome-page hidden">
-        <h1>Welcome!</h1>
-        <article class="greeting-container">
-          <h2>Your Adventure Begins Here.</h2>
-        </article>
-        <section class="options-container">
-          <button class="my-trips-btn">My Trips</button>
-          <button class="book-trip">Book A Trip</button>
-        </section>
-        <section class="welcome-image">
-          <img>
-        </section>
-      </header>
-      <section class="my-trips">
-        <article>
-          <h2>My Trips</h2>
-          <div>
-            <button class="back-to-main">Back To Main</button>
-          </div>
-          <h3>You've Spent $197483 On Trips This Year.</h3>
-        </article>
-        <section class="trip-card-section">
-
-        </article>
+      <section class="welcome-page">
+        <section class="welcome-container">
+          <article class="greeting-container">
+            <h2>Welcome!</h2>
+            <h2>Your Adventure Begins Here.</h2>
+          </article>
+          <section class="options-container">
+            <button class="my-trips-btn">My Trips</button>
+            <button class="book-trip">Book A Trip</button>
+          </section>
+          <section class="welcome-image">
+            <img>
+          </section>
         </section>
       </section>
+      <section class="my-trips hidden">
+        <article class="my-trips-container">
+          <section class="header-wrapper"
+            <h2>My Trips</h2>
+            <div>
+              <button class="back-to-main">Back To Main</button>
+            </div>
+            <h3>You've Spent $197483 On Trips This Year.</h3>
+          </section>  
+      
+       
+          <section class="trip-card-section">
+            <section class="current-trips">
+              <h2>Current Trips</h2>
+            </section>  
+            <section class="pending-trips">
+              <h2>Pending Trips</h2>
+            </section>
+            <section class="approved-trips">
+              <h2>Approved Trips</h2>
+            </section>
+            <section class="past-trips">
+              <h2>Past Trips</h2>
+            </section>
+          </article>
+          </section>
+        </article>
+        <section class="book-trip-page hidden">
+          <h2>Book A Trip</h2>
+          <div>
+            <button class="back-to-main-book">Back To Main</button>
+          </div>
+            <h3>Where Would You Like To Go Next?</h3>
+          <form>
+            <label for="destination">Destination:</label><br>
+            <select name="destination" id="destination">
+            <option value="sydney">Sydney</option>
+            <option value="melbourne">Melbourne</option>
+            </select><br>
+            <label for="start">Start date:</label><br>
+            <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31"><br>
+            <label for="travelers">Number Of Travelers:</label><br>
+            <select name="travelers" id="travelers"><br>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            </select><br>
+            <input class="booking-button" type="submit" value="Book!">
+          </form>
+        </section>
+        </article>
+      </section>
     </main>
-
-    
   </body>
 </html>
