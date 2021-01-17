@@ -73,7 +73,7 @@ describe("Traveler",() => {
   it('should return trips they are currently on', () => {
 
 
-    expect(traveler2.findCurrentTrips(tripsData)).to.deep.eq(tripsData[0])
+    expect(traveler2.findCurrentTrips()).to.deep.eq([tripsData[0]])
   });
 
   it('should return travelers first name', () => {

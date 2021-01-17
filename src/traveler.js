@@ -23,12 +23,18 @@ filterByStatus(status) {
   return trips
 }
 
-findCurrentTrips(tripsData) {
-  const date = this.trips.map(trip => trip.date)
-  const findDates = date.map(date => new Date(date))
-  const findCurrent = this.trips.find(trip => trip.date.includes(new Date()))
-  console.log(findDates)
-  console.log(new Date())
+findCurrentTrips() {
+  const currentTrip = this.trips.reduce((acc, trip) => {
+    let today = new Date()
+    let startDate = new Date(trip.date)
+    let endDate = new Date(trip.date)
+    endDate.setDate(endDate.getDate() + trip.duration)
+    if (startDate < today && endDate > today) {
+      acc.push(trip)
+    }
+  return acc
+  },[])
+  return currentTrip
 }
 
 returnTravelerFirstName() {
@@ -53,22 +59,6 @@ calculateTotalSpentOnTrips(destinationData) {
 
 }
 
-// function formatDate(today, joinBy) {
-//     today = new Date(today);
-//     let month = '' + (today.getMonth() + 1);
-//     let day = '' + today.getDate();
-//     let year = today.getFullYear();
-
-//     if (month.length < 2) {
-//       month = '0' + month
-//     }
-
-//     if (day.length < 2) {
-//       day = '0' + day
-//     }
-
-//     return [year, month, day].join("" /);
-// }
 
 // function updateDate(event) {
 //   today = new Date(event.target.value).toDateString();
