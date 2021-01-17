@@ -2,16 +2,16 @@
 import Destination from "./destination"
 
 export default class Trip {
-  constructor(tripsData) {
+  constructor(tripsData, destinationData) {
     this.id = tripsData.id;
     this.userID = tripsData.userID;
     this.destinationID = tripsData.destinationID;
     this.travelers = tripsData.travelers;
-    // this.date = tripsData.date;
     this.date = this.formatDate(tripsData.date);
     this.duration = tripsData.duration;
     this.status = tripsData.status;
     this.suggestedActivities = tripsData.suggestedActivities;
+    this.destination = destinationData
   }
 
   findDestination(destinationData) {

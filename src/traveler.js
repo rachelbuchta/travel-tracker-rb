@@ -3,10 +3,11 @@ import Trip from "./trip";
 import Destination from "./destination"
 
 export default class Traveler {
-  constructor(travelerData, tripsData) {
+  constructor(travelerData, tripsData, destinationData) {
     this.id = travelerData.id;
     this.name = travelerData.name;
     this.travelerType = travelerData.travelerType;
+    this.destinationData = destinationData;
     this.trips = this.instantiateNewTrips(tripsData);
   }
 
@@ -15,7 +16,14 @@ filterTripData(tripsData) {
 }
 
 instantiateNewTrips(tripsData) {
-  return this.filterTripData(tripsData).map(data => new Trip(data))
+  return tripsData.reduce((acc, trip) => {
+  this.destinationData.forEach(destination => {
+    if (this.id === trip.userID && trip.destinationID === destination.id) {
+      acc.push(new Trip(trip, destination))
+    }
+  })
+  return acc  
+  },[])
 }
 
 filterByStatus(status) {
@@ -37,33 +45,47 @@ findCurrentTrips() {
   return currentTrip
 }
 
+findPastTrips() {
+  const trips = this.trips.reduce((acc, trip) => {
+    let today = new Date()
+    let endDate = new Date(trip.date)
+    endDate.setDate(endDate.getDate() + trip.duration)
+    if (endDate < today) {
+      acc.push(trip)
+    }
+  return acc
+  },[])
+  return trips
+}
+
+findUpcomingTrips() {
+  const trips = this.trips.reduce((acc, trip) => {
+    let today = new Date();
+    let startDate = new Date(trip.date);
+    if (startDate > today) {
+      acc.push(trip);
+    }
+    return acc;
+  }, []);
+  return trips
+}
+
 returnTravelerFirstName() {
   const firstName = this.name.split(" ")[0]
   return firstName
 }
 
-findTripsThisYear() {
-  const date = this.trips.map(trip => trip.date)
-  const findDates = date.map(date => new Date(date))
-  const filterDates = findDates.filter(item => item.getFullYear() === 2021)
-  const indexOfDate = findDates.indexOf(2021)
+calculateTotalSpentOnTrips(year) {
+  const tripTotal = this.trips.reduce((total, trip) => {
+  if (trip.date.includes(year)) {
+    let lodging = trip.destination.estimatedLodgingCostPerDay * trip.duration * trip.travelers;
+    let flights = trip.destination.estimatedFlightCostPerPerson * trip.travelers;
+    total += lodging + flights;
+  }  
+  return total  
+  },0)
+  let agentFee = tripTotal * 0.1;
+  return tripTotal + agentFee
 }
 
-calculateTotalSpentOnTrips(destinationData) {
- return this.findTripsThisYear.reduce((sum, trip) => {
-  sum += trip.calculateCostOfTrip(destinationData)
- return sum  
- },0)
 }
-
-
-}
-
-
-// function updateDate(event) {
-//   today = new Date(event.target.value).toDateString();
-//   hotel.date = today;
-//   hotel.userDirectory.currentUser.bookingService.sortBookingsByDate(today);
-//   displayAvailableRooms();
-// }
-/* <input type="date" id="calendar" name="date"></input> */
