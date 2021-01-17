@@ -80,17 +80,19 @@ form {
     .my-trips-btn,
     .book-trip {
       border: 3px outset #5296AC;
-      border-radius: 0px 15px 15px 0px;
+      border-radius: 15px 15px 15px 15px;
       padding: 1%;
     }
 }
 
 .booking-button,
 .back-to-main-book,
-.back-to-main {
+.back-to-main,
+ button {
   border: 3px outset #5296AC;
-  border-radius: 0px 15px 15px 0px;
+  border-radius: 15px 15px 15px 15px;
   padding: 1%;
+  width: 20%;
 }
 
 .my-trips-container {

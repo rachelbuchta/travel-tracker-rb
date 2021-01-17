@@ -3,12 +3,12 @@ import Trip from "./trip";
 import Destination from "./destination"
 
 export default class Traveler {
-  constructor(travelerData,tripsData, destinationData) {
+  constructor(travelerData, tripsData, destinationData) {
     this.id = travelerData.id;
     this.name = travelerData.name;
     this.travelerType = travelerData.travelerType;
-    this.destinationData = destinationData;
-    this.tripsData = tripsData;
+    this.destinationData = destinationData.destinations;
+    this.tripsData = tripsData.trips;
     this.trips = this.instantiateNewTrips() || [];
   }
 
@@ -17,7 +17,7 @@ filterTripData(tripsData) {
 }
 
 instantiateNewTrips() {
-  if (this.tripsData.length >0)
+  if (this.tripsData.length > 0)
   return this.tripsData.reduce((acc, trip) => {
   this.destinationData.forEach(destination => {
     if (this.id === trip.userID && trip.destinationID === destination.id) {

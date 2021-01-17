@@ -7,20 +7,21 @@ import './css/base.scss';
 
 //images
 import './images/image.png';
+import domUpdates from './domUpdates.js';
 // import './images/search.png';
 
 //globalVariables
 let currentTraveler;
-let allTrips;
+let allTrips = []
 let allDestinations;
 let allTravelers;
 let currentUser;
 let tripInfo;
 let userTrips;
- let travelerData
- let tripData 
- let destinationData
- let allTravelerData 
+let travelerData
+let tripData 
+let destinationData
+let allTravelerData 
 
 //querySelectors
 const loginButton = document.querySelector(".login-button")
@@ -56,28 +57,40 @@ function initiateData() {
     currentTraveler = responses[0];
     allDestinations = responses[1];
     tripInfo = responses[2];
-    const test = tripInfo.map(trip => {
-      userTrips = new Trip(trip)
-      allTrips.push(userTrips)
+    greetUser(currentTraveler, tripInfo, allDestinations)
     })
-    return test
-    console.log(tripInfo)
-    
-    
-    // greetUser()
-  })
-  
 }
 
-// const travelerProfile() {
-//   currentTraveler = new Traveler()
-// }
-// build page - traveler profile and display trips - create traveker profile -instantiaite traveler
-//display trips - 
-// traveler - instantate it there
-function greetUser(currentTraveler, allTrips, allDestinations) {
+function greetUser(currentTraveler, tripInfo, allDestinations) {
+  currentUser = new Traveler(currentTraveler, tripInfo, allDestinations)
+  domUpdates.welcomeUser(currentUser);
+}
 
-  currentUser = new Traveler(currentTraveler, allTrips, allDestinations)
+
+
+
+
+
+function createDestinationCard() {
+        //   <div class="trip-card">
+        //   <img class='card-image image' src='./assets/hiphop3.jpg' alt='taylor swift'>
+        //   <div class="image-wrapper">
+        //     <img class="nav-icons share-image" src='./assets/next.svg' alt='share-icon'>
+        //     <div class="view-wrapper">
+        //       <p class='views view-count'>VIEWS</p>
+        //       <p class='count view-count'>02</p>
+        //     </div>
+        //   </div>
+        //   <section class='information'>
+        //     <h2 class='name'>Recipeint's Namehere</h2>
+        //       <p class='date'>Monday 01/23/16 10:22am</p>
+        //     <p class='sitelink'>"https://2win.2winstag.com/p/reci-pients_namehere"</p>
+        //     <h3>PLAYLIST</h3>
+        //       <h2 class='playlist-name'>Hip Hop</h2>
+        //     <h3 class='attachments'>ATTACHMENTS</h3>
+        //       <p class='number'>04</p>
+        //   </section>
+        // </div>
 }
 
 function hideLoginPage() {
