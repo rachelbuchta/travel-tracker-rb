@@ -8,6 +8,7 @@ welcomeUser(currentUser) {
 
 createTripCards(currentUser) {
   const cardDisplay = document.querySelector(".card-display")
+  
   let cardHTML = `
   <article class="trip-card">
     <section class="destination-name-wrapper">

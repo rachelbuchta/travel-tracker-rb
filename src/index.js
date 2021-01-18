@@ -35,6 +35,9 @@ const backToMainBook = document.querySelector(".back-to-main-book")
 const bookingPage = document.querySelector(".book-trip-page")
 const submitBookingBtn = document.querySelector(".booking-button")
 const currentTripsBtn = document.querySelector(".current-trips-btn");
+const pendingTripsBtn = document.querySelector(".pending-trips-btn")
+const upcomingTripsBtn = document.querySelector(".upcoming-trips-btn")
+const pastTripsBtn = document.querySelector(".past-trips-btn")
 
 
 //eventListeners
@@ -44,7 +47,12 @@ myTripsBtn.addEventListener('click', hideMainPage)
 backToMain.addEventListener('click', goBackToMain)
 bookButton.addEventListener('click', bookATrip)
 backToMainBook.addEventListener('click', backToMainFromBook)
-currentTripsBtn.addEventListener('click', displayCurrentCards)
+currentTripsBtn.addEventListener('click', getCurrentTrips)
+// pendingTripsBtn.addEventListener('click', displayPendingCards)
+upcomingTripsBtn.addEventListener('click', getUpcomingTrips)
+pastTripsBtn.addEventListener('click', getPastTrips)
+
+
 
 function getData() {
  travelerData = fetchCalls.getTraveler(9) 
@@ -70,11 +78,12 @@ function greetUser(currentTraveler, tripInfo, allDestinations) {
  getCostSpentOverAYear(currentUser)
 }
 
-function getCurrentTrips() {
-let currentTrips = currentUser.findCurrentTrips();
-let returnedCurrent = currentTrips.map(trip => {
+function formatTravelCard(trips) {
+let returnedCurrent = trips.map(trip => {
   const destination = trip.destination
-  const tripCard = {
+  const tripCard = 
+  // [destination.destination, destination.image, destination.alt, destination.estimatedLodgingCostPerDay, destination.estimatedFlightCostPerPerson]
+  {
     name: destination.destination,
     image: destination.image,
     alt: destination.alt,
@@ -86,22 +95,51 @@ let returnedCurrent = currentTrips.map(trip => {
 return returnedCurrent
 }
 
-function displayCurrentCards() {
-  const allCurrent = getCurrentTrips()
-  allCurrent.map(trip => {
-    domUpdates.createTripCards(trip)
-  })
+function getCurrentTrips() {
+let currentTrips = currentUser.findCurrentTrips();
+console.log("current",currentTrips)
+displayCurrentCards(formatTravelCard(currentTrips));
 }
 
+function getPastTrips() {
+let pastTrips = currentUser.findPastTrips();
+const formatedTrips = formatTravelCard(pastTrips)
+const test2 = displayCurrentCards(formatedTrips)
+console.log(test2)
+}
 
+function getUpcomingTrips() {
+let upComingTrips = currentUser.findUpcomingTrips();
+console.log("upcoming",upComingTrips)
+displayCurrentCards(formatTravelCard(upComingTrips));
+}
 
+// function displayCurrentCards(trips) {
+//   console.log("display",trips)
+//  const test = trips.map(trip => {
+//    console.log(trip[trip])
+//     const hey = domUpdates.createTripCards(trip)
+//     return hey
+//   })
+//   return test
+//   console.log(number)
+// }
 
+function displayCurrentCards(trips) {
+  console.log("display",trips)
+ const test = trips.map(trip => {
+   console.log(trip)
 
+    const hey = domUpdates.createTripCards(trip)
+ 
+  })
+  return test
+  console.log(number)
+}
 
 function getCostSpentOverAYear() {
    let cost = currentUser.calculateTotalSpentOnTrips(2020).toLocaleString("en-US", {style: "currency", currency: "USD"});
    domUpdates.displayAmountSpentAYear(cost)
-
 }
 
 
