@@ -11,14 +11,14 @@ createTripCards(currentUser) {
   let cardHTML = `
   <article class="trip-card">
     <section class="destination-name-wrapper">
-      <h2>${currentUser.destination}</h2>
+      <h2>${currentUser.name}</h2>
     </section>
     <section class="image-wrapper">
       <img class='card-image image' src='${currentUser.image}' alt='${currentUser.alt}'></img>
     </section>  
     <section class="cost-wrapper">
-      <p class='lodging-cost cost'>${currentUser.lodging}</p>
-      <p class='flight-cost cost'>${currentUser.flights}</p>
+      <p class='lodging-cost cost'>Estimated Lodging Cost:${currentUser.lodging}</p>
+      <p class='flight-cost cost'>Estimated Flight Cost:${currentUser.flights}</p>
     </section>
   </article>`
   cardDisplay.innerHTML = cardHTML;

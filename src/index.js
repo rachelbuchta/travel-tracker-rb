@@ -66,10 +66,6 @@ function initiateData() {
 
 function greetUser(currentTraveler, tripInfo, allDestinations) {
   currentUser = new Traveler(currentTraveler, tripInfo, allDestinations)
-//   allTrips = tripInfo.trips.forEach(trip => {
-//     let trips = new Trip(trip, allDestinations)
-//     allTrips.push(trips);
-// })
  domUpdates.welcomeUser(currentUser);
 }
 
@@ -84,7 +80,6 @@ let returnedCurrent = currentTrips.map(trip => {
     lodging: destination.estimatedLodgingCostPerDay,
     flights: destination.estimatedFlightCostPerPerson
     }
-  console.log(tripCard)
   return tripCard
 })
 // console.log(destination)
@@ -98,9 +93,7 @@ console.log(returnedCurrent)
 
 function displayCurrentCards() {
   const allCurrent = getCurrentTrips()
-  console.log(allCurrent)
   allCurrent.map(trip => {
-    console.log(trip)
     domUpdates.createTripCards(trip)
   })
   
@@ -113,9 +106,6 @@ function displayCurrentCards() {
 
 
 
-function createDestinationCard() {
-
-}
 
 function hideLoginPage() {
   event.preventDefault()

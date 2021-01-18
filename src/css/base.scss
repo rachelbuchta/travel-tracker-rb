@@ -27,6 +27,11 @@ h1 {
 
 }
 
+// img {
+//   height: 5em;
+//   width: 5em;
+// }
+
 .login-page {
   @include flexDisplay(column, center);
   height: 100vh;
@@ -140,6 +145,46 @@ form {
   justify-content: center;
   align-items: center;
   width: 50%;
+}
+
+.trip-card-section {
+ @include flexDisplay(column, center);
+ width: 100%;
+ justify-content: space-around;
+}
+
+.trip-buttons-wrapper {
+ @include flexDisplay(row, center);
+ width: 100%;
+ justify-content: space-around;
+}
+
+.card-display {
+@include flexDisplay(column, center);
+justify-content: center;
+width: 100%;
+align-items: center;
+}
+
+.trip-card {
+  @include flexDisplay(column, center);
+  justify-content: center;
+  align-items: center;
+  background-color: #fdfdff;
+  box-shadow: 0 0 10px #333;
+  color: black;
+  width: 60%;
+}
+
+img {
+  height: 80%;
+  width: 90%;
+}
+
+.image-wrapper {
+  justify-content: center;
+  align-items: center;
+  width:100%;
 }
 
 
