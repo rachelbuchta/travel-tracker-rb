@@ -48,7 +48,7 @@ backToMain.addEventListener('click', goBackToMain)
 bookButton.addEventListener('click', bookATrip)
 backToMainBook.addEventListener('click', backToMainFromBook)
 currentTripsBtn.addEventListener('click', getCurrentTrips)
-// pendingTripsBtn.addEventListener('click', displayPendingCards)
+pendingTripsBtn.addEventListener('click', getPendingTrips)
 upcomingTripsBtn.addEventListener('click', getUpcomingTrips)
 pastTripsBtn.addEventListener('click', getPastTrips)
 
@@ -81,9 +81,7 @@ function greetUser(currentTraveler, tripInfo, allDestinations) {
 function formatTravelCard(trips) {
 let returnedCurrent = trips.map(trip => {
   const destination = trip.destination
-  const tripCard = 
-  // [destination.destination, destination.image, destination.alt, destination.estimatedLodgingCostPerDay, destination.estimatedFlightCostPerPerson]
-  {
+  const tripCard = {
     name: destination.destination,
     image: destination.image,
     alt: destination.alt,
@@ -97,51 +95,32 @@ return returnedCurrent
 
 function getCurrentTrips() {
 let currentTrips = currentUser.findCurrentTrips();
-console.log("current",currentTrips)
 displayCurrentCards(formatTravelCard(currentTrips));
 }
 
 function getPastTrips() {
 let pastTrips = currentUser.findPastTrips();
-const formatedTrips = formatTravelCard(pastTrips)
-const test2 = displayCurrentCards(formatedTrips)
-console.log(test2)
+displayCurrentCards(formatTravelCard(pastTrips));
 }
 
 function getUpcomingTrips() {
 let upComingTrips = currentUser.findUpcomingTrips();
-console.log("upcoming",upComingTrips)
 displayCurrentCards(formatTravelCard(upComingTrips));
 }
 
-// function displayCurrentCards(trips) {
-//   console.log("display",trips)
-//  const test = trips.map(trip => {
-//    console.log(trip[trip])
-//     const hey = domUpdates.createTripCards(trip)
-//     return hey
-//   })
-//   return test
-//   console.log(number)
-// }
+function getPendingTrips() {
+  let pendingTrips = currentUser.filterByStatus("pending")
+  displayCurrentCards(formatTravelCard(pendingTrips));
+}
 
 function displayCurrentCards(trips) {
-  console.log("display",trips)
- const test = trips.map(trip => {
-   console.log(trip)
-
-    const hey = domUpdates.createTripCards(trip)
- 
-  })
-  return test
-  console.log(number)
+  domUpdates.createTripCards(trips)
 }
 
 function getCostSpentOverAYear() {
    let cost = currentUser.calculateTotalSpentOnTrips(2020).toLocaleString("en-US", {style: "currency", currency: "USD"});
    domUpdates.displayAmountSpentAYear(cost)
 }
-
 
 function hideLoginPage() {
   event.preventDefault()

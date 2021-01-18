@@ -6,23 +6,23 @@ welcomeUser(currentUser) {
   document.querySelector(".greeting-container").insertAdjacentHTML("afterbegin", welcomeMsg)
 },
 
-createTripCards(currentUser) {
-  const cardDisplay = document.querySelector(".card-display")
-  
-  let cardHTML = `
+createTripCards(trips) {
+   return trips.map(trip => {
+      let cardHTML = `
   <article class="trip-card">
     <section class="destination-name-wrapper">
-      <h2>${currentUser.name}</h2>
+      <h2>${trip.name}</h2>
     </section>
     <section class="image-wrapper">
-      <img class='card-image image' src='${currentUser.image}' alt='${currentUser.alt}'></img>
+      <img class='card-image image' src='${trip.image}' alt='${trip.alt}'></img>
     </section>  
     <section class="cost-wrapper">
-      <p class='lodging-cost cost'>Estimated Lodging Cost:${currentUser.lodging}</p>
-      <p class='flight-cost cost'>Estimated Flight Cost:${currentUser.flights}</p>
+      <p class='lodging-cost cost'>Estimated Lodging Cost:${trip.lodging}</p>
+      <p class='flight-cost cost'>Estimated Flight Cost:${trip.flights}</p>
     </section>
   </article>`
-  cardDisplay.innerHTML = cardHTML;
+  document.querySelector(".card-display").insertAdjacentHTML("afterbegin", cardHTML)
+  })
 },
 
 displayAmountSpentAYear(currentUser) {
