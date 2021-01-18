@@ -48,19 +48,19 @@ const fetchCalls = {
       return postedData
   },
 
-  buildTripObject(booking) {
-    let bookingObject = {
-      id: trip.id,
-      userID: trip.userID,
-      destinationID: trip.destinationID,
-      travelers: trip.travelers,
-      date: trip.date,
-      duration: trip.duration,
-      status: trip.status,
-      suggestedActivities: trip.suggestedActivities
-    }
-    return bookingObject
-  }
+  // buildTripObject(booking) {
+  //   let bookingObject = {
+  //     id: trip.id,
+  //     userID: trip.userID,
+  //     destinationID: trip.destinationID,
+  //     travelers: trip.travelers,
+  //     date: trip.date,
+  //     duration: trip.duration,
+  //     status: trip.status,
+  //     suggestedActivities: trip.suggestedActivities
+  //   }
+  //   return bookingObject
+  // }
 
 
 }

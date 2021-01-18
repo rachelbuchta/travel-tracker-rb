@@ -14,8 +14,6 @@ export default class Trip {
     this.destination = destinationData;
   }
 
-
-
   findDestination(destinationData) {
     return destinationData.find(destination => this.destinationID === destination.id)
   }
