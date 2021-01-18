@@ -15,7 +15,7 @@ export default class Trip {
   }
 
   findDestination(destinationData) {
-   return destinationData.find(destination => this.destinationID === destination.id)
+    return destinationData.find(destination => this.destinationID === destination.id)
   }
 
   calculateCostOfTrip(destinationData) {
@@ -28,7 +28,7 @@ export default class Trip {
 
   calculateAgentFee(destinationData) {
     const dollars = (this.calculateCostOfTrip(destinationData) / 100) * 10
-     return dollars
+    return dollars
   }
 
   costOfTripAndFee(destinationData) {
@@ -38,7 +38,7 @@ export default class Trip {
     }
   }
 
-formatDate(tripDate) {
+  formatDate(tripDate) {
     let today = new Date(tripDate);
     let month = '' + (today.getMonth() + 1);
     let day = '' + today.getDate();
@@ -50,6 +50,6 @@ formatDate(tripDate) {
       day = '0' + day
     }
     return [year, month, day].join("/");
-}
+  }
 
 }

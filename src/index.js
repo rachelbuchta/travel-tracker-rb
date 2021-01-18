@@ -4,13 +4,13 @@ import Trip from './trip.js'
 import Destination from './destination.js'
 import fetchCalls from './apiCalls'
 import './css/base.scss';
+import domUpdates from './domUpdates.js';
 
 //images
 import './images/image.png';
-import domUpdates from './domUpdates.js';
 import './images/man.jpg'
-// import './images/search.png';
 import './images/globe.svg'
+import './images/curve-arrow.svg'
 
 //globalVariables
 let currentTraveler;
@@ -57,57 +57,57 @@ pastTripsBtn.addEventListener('click', getPastTrips)
 
 
 function getData() {
- travelerData = fetchCalls.getTraveler(9) 
- tripData = fetchCalls.getTrips() 
- destinationData = fetchCalls.getDestinations()
- allTravelerData = fetchCalls.getAllTravelers()
- initiateData()
+  travelerData = fetchCalls.getTraveler(38) 
+  tripData = fetchCalls.getTrips() 
+  destinationData = fetchCalls.getDestinations()
+  allTravelerData = fetchCalls.getAllTravelers()
+  initiateData()
 }
 
 function initiateData() {
   return Promise.all([travelerData, destinationData, tripData])
-  .then(responses => {
-    currentTraveler = responses[0];
-    allDestinations = responses[1];
-    tripInfo = responses[2];
-    greetUser(currentTraveler, tripInfo, allDestinations)
+    .then(responses => {
+      currentTraveler = responses[0];
+      allDestinations = responses[1];
+      tripInfo = responses[2];
+      greetUser(currentTraveler, tripInfo, allDestinations)
     })
 }
 
 function greetUser(currentTraveler, tripInfo, allDestinations) {
   currentUser = new Traveler(currentTraveler, tripInfo, allDestinations)
- domUpdates.welcomeUser(currentUser);
- getCostSpentOverAYear(currentUser)
+  domUpdates.welcomeUser(currentUser);
+  getCostSpentOverAYear(currentUser)
 }
 
 function formatTravelCard(trips) {
-let returnedCurrent = trips.map(trip => {
-  const destination = trip.destination
-  const tripCard = {
-    name: destination.destination,
-    image: destination.image,
-    alt: destination.alt,
-    lodging: destination.estimatedLodgingCostPerDay,
-    flights: destination.estimatedFlightCostPerPerson
+  let returnedCurrent = trips.map(trip => {
+    const destination = trip.destination
+    const tripCard = {
+      name: destination.destination,
+      image: destination.image,
+      alt: destination.alt,
+      lodging: destination.estimatedLodgingCostPerDay,
+      flights: destination.estimatedFlightCostPerPerson
     }
-  return tripCard
-})
-return returnedCurrent
+    return tripCard
+  })
+  return returnedCurrent
 }
 
 function getCurrentTrips() {
-let currentTrips = currentUser.findCurrentTrips();
-displayCurrentCards(formatTravelCard(currentTrips));
+  let currentTrips = currentUser.findCurrentTrips();
+  displayCurrentCards(formatTravelCard(currentTrips));
 }
 
 function getPastTrips() {
-let pastTrips = currentUser.findPastTrips();
-displayCurrentCards(formatTravelCard(pastTrips));
+  let pastTrips = currentUser.findPastTrips();
+  displayCurrentCards(formatTravelCard(pastTrips));
 }
 
 function getUpcomingTrips() {
-let upComingTrips = currentUser.findUpcomingTrips();
-displayCurrentCards(formatTravelCard(upComingTrips));
+  let upComingTrips = currentUser.findUpcomingTrips();
+  displayCurrentCards(formatTravelCard(upComingTrips));
 }
 
 function getPendingTrips() {
@@ -120,8 +120,8 @@ function displayCurrentCards(trips) {
 }
 
 function getCostSpentOverAYear() {
-   let cost = currentUser.calculateTotalSpentOnTrips(2020).toLocaleString("en-US", {style: "currency", currency: "USD"});
-   domUpdates.displayAmountSpentAYear(cost)
+  let cost = currentUser.calculateTotalSpentOnTrips(2020).toLocaleString("en-US", {style: "currency", currency: "USD"});
+  domUpdates.displayAmountSpentAYear(cost)
 }
 
 function hideLoginPage() {

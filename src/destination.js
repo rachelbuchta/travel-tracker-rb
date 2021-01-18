@@ -8,12 +8,4 @@ export default class Destination {
     this.image = destinationData.image;
     this.alt = destinationData.alt;
   }
-
-  // returnLodgingCostPerDay() {
-  //   return this.estimatedLodgingCostPerDay;
-  // }
-
-  // returnFlightCostPerPerson() {
-  //   return this.estimatedFlightCostPerPerson;
-  // }
 }

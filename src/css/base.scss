@@ -8,6 +8,8 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
+  font-family: 'Raleway',
+  sans-serif;
 }
 
 header {
@@ -37,12 +39,9 @@ main {
 height: 80vh;
 }
 
-
-
-// img {
-//   height: 5em;
-//   width: 5em;
-// }
+h3 {
+  justify-self: center;
+}
 
 .login-page {
   @include flexDisplay(column, center);
@@ -62,7 +61,6 @@ form {
 
 .my-trips {
   @include flexDisplay(column, center);
-  // height: 60vh;
 }
 
 .hidden {
@@ -72,6 +70,7 @@ form {
 .login-button {
  width: 30%;
  align-self: center;
+
 }
 
 .welcome-image-wrapper {
@@ -82,7 +81,10 @@ form {
 
     .welcome-image {
       height: 20em;
-      width: 20em;
+      width: 40em;
+      filter: opacity(80%);
+      border-radius: 2%;
+      box-shadow: 0 0 10px #5296AC;
     }
 }
 
@@ -109,22 +111,42 @@ form {
 
     .my-trips-btn,
     .book-trip {
-      border: 3px outset #5296AC;
+      border: 3px outset #B0C6D5;
       border-radius: 15px 15px 15px 15px;
       padding: 1%;
       width: 40%;
+      cursor: pointer;
+
+          &:hover {
+            color: #6F8BA4;
+            font-size: 14px;
+            text-shadow: 0px 2px 4px #BADFE5;
+            @include transition(.4s ease);
+          }
     }
 }
 
-.booking-button,
-.back-to-main-book,
 .back-to-main,
+.back-to-main-book {
+  height: 2em;
+  width: 2em;
+  cursor: pointer;
+}
+
+.booking-button,
  button {
   border: 3px outset #5296AC;
   border-radius: 15px 15px 15px 15px;
   padding: 1%;
   width: 20%;
-  // height: 20%;
+  cursor: pointer;
+
+    &:hover {
+      color: #6F8BA4;
+      font-size: 14px;
+      text-shadow: 0px 2px 4px #BADFE5;
+      @include transition(.4s ease);
+    }
 }
 
 .my-trips-container {
@@ -133,10 +155,14 @@ form {
   
 }
 
-.header-wrapper {
-  @include flexDisplay(column, start);
+.my-trips-wrapper {
+  display: flex;
   justify-content: center;
-  // align-items: center;
+}
+
+.header-wrapper {
+  @include flexDisplay(column, center);
+  justify-content: center;
   height: 20%;
   background-color: #B0C6D5;
   color: #FEFEFE;
@@ -152,13 +178,11 @@ form {
 
 .book-trip-page {
   height: 80vh;
-  // @include flexDisplay(column, center);
   background-color: #EACDC0;
 }
 
 .book-wrapper {
   @include flexDisplay(column, center);
-  // height: 100vh;
   align-items: center;
   color: #FEFEFE;
   justify-items: center;
@@ -175,8 +199,6 @@ form {
 
 .trip-card-section {
  @include flexDisplay(column, center);
-//  width: 100%;
-//  margin: 2%;
 height: 80%;
  justify-content: space-around;
 }
@@ -189,10 +211,12 @@ height: 80%;
 }
 
 .card-display {
-@include flexDisplay(column, none);
+@include flexDisplay(column, row);
 overflow: auto;
 height: 80%;
-// margin: 2%;
+
+
+grid-gap: 4%;
 align-items: center;
 }
 
@@ -201,7 +225,7 @@ align-items: center;
   justify-content: center;
   align-items: center;
   background-color: #fdfdff;
-  box-shadow: 0 0 10px #333;
+  box-shadow: 0 0 10px #5296AC;
   color: black;
   width: 60%;
 }
@@ -209,12 +233,16 @@ align-items: center;
 .card-image {
   height: 80%;
   width: 90%;
+  filter: opacity(80%);
+  border-radius: 2%;
+  
 }
 
 .image-wrapper {
   justify-content: center;
   align-items: center;
   width:100%;
+  display: flex;
 }
 
 
