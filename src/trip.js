@@ -11,8 +11,10 @@ export default class Trip {
     this.duration = tripsData.duration;
     this.status = tripsData.status;
     this.suggestedActivities = tripsData.suggestedActivities;
-    this.destination = destinationData
+    this.destination = destinationData;
   }
+
+
 
   findDestination(destinationData) {
     return destinationData.find(destination => this.destinationID === destination.id)

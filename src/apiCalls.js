@@ -30,7 +30,7 @@ const fetchCalls = {
       .catch(err => {
         alert("Sorry! We are having trouble getting the data, try again later!")
       })
-  }
+  },
 
   postTrip() {
     let newTrip = fetchAPI.buildTripObject(trip);
@@ -57,7 +57,7 @@ const fetchCalls = {
       date: trip.date,
       duration: trip.duration,
       status: trip.status,
-      suggestedActivities: trip.suggestedActivities,
+      suggestedActivities: trip.suggestedActivities
     }
     return bookingObject
   }

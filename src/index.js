@@ -42,6 +42,7 @@ const upcomingTripsBtn = document.querySelector(".upcoming-trips-btn")
 const pastTripsBtn = document.querySelector(".past-trips-btn")
 
 
+
 //eventListeners
 window.addEventListener('load', getData)
 loginButton.addEventListener("click", hideLoginPage)
@@ -62,6 +63,7 @@ function getData() {
   destinationData = fetchCalls.getDestinations()
   allTravelerData = fetchCalls.getAllTravelers()
   initiateData()
+  
 }
 
 function initiateData() {
@@ -72,12 +74,15 @@ function initiateData() {
       tripInfo = responses[2];
       greetUser(currentTraveler, tripInfo, allDestinations)
     })
+    
 }
 
 function greetUser(currentTraveler, tripInfo, allDestinations) {
   currentUser = new Traveler(currentTraveler, tripInfo, allDestinations)
   domUpdates.welcomeUser(currentUser);
   getCostSpentOverAYear(currentUser)
+  sortDestinationsAlphabetically()
+  addDestinationOptions()
 }
 
 function formatTravelCard(trips) {
@@ -94,6 +99,22 @@ function formatTravelCard(trips) {
   })
   return returnedCurrent
 }
+
+  function sortDestinationsAlphabetically() {
+    const alphabetically = allDestinations.destinations.map(destination => {
+      let destinationName = destination.destination
+      return destinationName
+      })
+      console.log(alphabetically)
+    return alphabetically.sort()
+  }
+
+  function addDestinationOptions(trips) {
+     let options = sortDestinationsAlphabetically().map(destination => {
+       return `<option value="${destination}">${destination}</option>`
+      })
+    document.querySelector(".trip-dropdown").insertAdjacentHTML("afterbegin",options)
+  }
 
 function getCurrentTrips() {
   let currentTrips = currentUser.findCurrentTrips();
