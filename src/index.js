@@ -23,7 +23,8 @@ let userTrips;
 let travelerData
 let tripData 
 let destinationData
-let allTravelerData 
+let allTravelerData
+let bookingObject; 
 
 //querySelectors
 const loginButton = document.querySelector(".login-button")
@@ -56,7 +57,7 @@ currentTripsBtn.addEventListener('click', getCurrentTrips)
 pendingTripsBtn.addEventListener('click', getPendingTrips)
 upcomingTripsBtn.addEventListener('click', getUpcomingTrips)
 pastTripsBtn.addEventListener('click', getPastTrips)
-submitBookingBtn.addEventListener('click', buildTripObject)
+submitBookingBtn.addEventListener('click', postData)
 
 function getData() {
   travelerData = fetchCalls.getTraveler(5) 
@@ -110,6 +111,13 @@ function formatTravelCard(trips) {
   return returnedCurrent
 }
 
+function postData(bookingObject) {
+  event.preventDefault()
+  bookingObject = buildTripObject()
+  const test = fetchCalls.postTrip(bookingObject)
+  return test
+}
+
 function findDestination() {
   const test = allDestinations.destinations.find(destination => {
     if (destinationInput.value === destination.destination) {
@@ -120,14 +128,19 @@ function findDestination() {
 }
 
  function buildTripObject() {
-   event.preventDefault()
-    let bookingObject = {
+   console.log(currentTraveler)
+   console.log(currentUser)
+  let newDateFormat = startDate.value.split("-").join("/");
+  let travelers = parseInt(numberOfTravelers.value);
+  let duration = parseInt(durationInput.value);
+  let destinationID = findDestination(allDestinations);
+     bookingObject = {
       id: Number(Date.now()),
       userID: currentUser.id,
-      destinationID: findDestination(allDestinations),
-      travelers: parseInt(numberOfTravelers.value),
-      date: startDate.value,
-      duration: parseInt(durationInput.value),
+      destinationID: destinationID,
+      travelers: travelers,
+      date: newDateFormat,
+      duration: duration,
       status: "pending",
       suggestedActivities: []
     }

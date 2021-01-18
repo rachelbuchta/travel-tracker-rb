@@ -32,22 +32,24 @@ const fetchCalls = {
       })
   },
 
-  postTrip() {
-    let newTrip = fetchAPI.buildTripObject(trip);
-    let postedData = fetch('http://localhost:3001/api/v1/trips', {
+  postTrip(newBooking) {
+    // let newTrip = fetchAPI.buildTripObject(trip);
+    return fetch('http://localhost:3001/api/v1/trips', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type':'application/json'
       },
       body: JSON.stringify(newBooking)
     })
       .then(response => response.json())
-      .catch(error => {
-        alert("Sorry, We are having trouble getting the data, try again later!")
+      .then((response) => {
+        console.log(response)
+        return response
       })
-      return postedData
-  },
-
+      .catch(error => console.log(error.message))
+      
+  }
+}
   // buildTripObject(booking) {
   //   let bookingObject = {
   //     id: trip.id,
@@ -63,6 +65,6 @@ const fetchCalls = {
   // }
 
 
-}
+
 
 export default fetchCalls;
