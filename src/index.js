@@ -74,35 +74,25 @@ function initiateData() {
       allDestinations = responses[1];
       tripInfo = responses[2];
       greetUser(currentTraveler, tripInfo, allDestinations)
-     
     })
 }
-   
 
 function greetUser(currentTraveler, tripInfo, allDestinations) {
   currentUser = new Traveler(currentTraveler, tripInfo, allDestinations)
   domUpdates.welcomeUser(currentUser);
   getCostSpentOverAYear(currentUser)
   addDestinationOptions()
-  console.log(tripInfo)
-  console.log(allDestinations)
-  
-  
-  
-  // findDestination(allDestinations)
 }
-
-// function postTrip(tripInfo, allDestinations) {
-//  buildTripObject(tripInfo, allDestinations)
-// }
 
 function formatTravelCard(trips) {
   let returnedCurrent = trips.map(trip => {
+    console.log(trip)
     const destination = trip.destination
     const tripCard = {
       name: destination.destination,
       image: destination.image,
       alt: destination.alt,
+      status: trip.status,
       lodging: destination.estimatedLodgingCostPerDay,
       flights: destination.estimatedFlightCostPerPerson
     }
@@ -128,23 +118,16 @@ function findDestination() {
 }
 
  function buildTripObject() {
-   console.log(currentTraveler)
-   console.log(currentUser)
-  let newDateFormat = startDate.value.split("-").join("/");
-  let travelers = parseInt(numberOfTravelers.value);
-  let duration = parseInt(durationInput.value);
-  let destinationID = findDestination(allDestinations);
      bookingObject = {
       id: Number(Date.now()),
       userID: currentUser.id,
-      destinationID: destinationID,
-      travelers: travelers,
-      date: newDateFormat,
-      duration: duration,
+      destinationID: findDestination(allDestinations),
+      travelers: parseInt(numberOfTravelers.value),
+      date: startDate.value.split("-").join("/"),
+      duration: parseInt(durationInput.value),
       status: "pending",
       suggestedActivities: []
     }
-    console.log(bookingObject)
     return bookingObject
   }
 
@@ -161,7 +144,6 @@ function findDestination() {
        return `<option id="${destination.id}" value="${destination}">${destination}</option>`
       })
     document.querySelector(".trip-dropdown").insertAdjacentHTML("afterbegin",options)
-
   }
 
 function getCurrentTrips() {

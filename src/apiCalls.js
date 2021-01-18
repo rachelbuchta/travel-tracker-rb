@@ -33,7 +33,6 @@ const fetchCalls = {
   },
 
   postTrip(newBooking) {
-    // let newTrip = fetchAPI.buildTripObject(trip);
     return fetch('http://localhost:3001/api/v1/trips', {
       method: 'POST',
       headers: {
@@ -50,20 +49,6 @@ const fetchCalls = {
       
   }
 }
-  // buildTripObject(booking) {
-  //   let bookingObject = {
-  //     id: trip.id,
-  //     userID: trip.userID,
-  //     destinationID: trip.destinationID,
-  //     travelers: trip.travelers,
-  //     date: trip.date,
-  //     duration: trip.duration,
-  //     status: trip.status,
-  //     suggestedActivities: trip.suggestedActivities
-  //   }
-  //   return bookingObject
-  // }
-
 
 
 
