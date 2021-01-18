@@ -67,6 +67,7 @@ function initiateData() {
 function greetUser(currentTraveler, tripInfo, allDestinations) {
   currentUser = new Traveler(currentTraveler, tripInfo, allDestinations)
  domUpdates.welcomeUser(currentUser);
+ getCostSpentOverAYear(currentUser)
 }
 
 function getCurrentTrips() {
@@ -82,21 +83,14 @@ let returnedCurrent = currentTrips.map(trip => {
     }
   return tripCard
 })
-// console.log(destination)
 return returnedCurrent
-console.log(returnedCurrent)
-//map through returned current for each create card
-// domUpdates.createTripCards(returnedCurrent)
 }
-
-
 
 function displayCurrentCards() {
   const allCurrent = getCurrentTrips()
   allCurrent.map(trip => {
     domUpdates.createTripCards(trip)
   })
-  
 }
 
 
@@ -104,7 +98,11 @@ function displayCurrentCards() {
 
 
 
+function getCostSpentOverAYear() {
+   let cost = currentUser.calculateTotalSpentOnTrips(2020).toLocaleString("en-US", {style: "currency", currency: "USD"});
+   domUpdates.displayAmountSpentAYear(cost)
 
+}
 
 
 function hideLoginPage() {

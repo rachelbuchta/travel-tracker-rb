@@ -22,6 +22,11 @@ createTripCards(currentUser) {
     </section>
   </article>`
   cardDisplay.innerHTML = cardHTML;
+},
+
+displayAmountSpentAYear(currentUser) {
+  let costHTML = `<h3>You've spent ${currentUser} on making memories this year.` 
+document.querySelector(".header-wrapper").insertAdjacentHTML("beforeend", costHTML)
 }
   
 
