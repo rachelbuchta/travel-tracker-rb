@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import Destination from '../src/destination';
 import destinationData from '../src/data/destination-test-data'
 
-describe("Destination",() => {
+describe("Destination", () => {
   let destination;
 
   beforeEach(() => {
@@ -39,16 +39,16 @@ describe("Destination",() => {
 
   it('should have an estimate flights per person', () => {    
     
-   expect(destination.estimatedFlightCostPerPerson).to.eq(400);
+    expect(destination.estimatedFlightCostPerPerson).to.eq(400);
   });
 
   it('should have an image', () => {    
     
-   expect(destination.image).to.eq("https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80");
+    expect(destination.image).to.eq("https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80");
   });
 
   it('should have an alt text', () => {    
     
-   expect(destination.alt).to.eq("overview of city buildings with a clear sky");
+    expect(destination.alt).to.eq("overview of city buildings with a clear sky");
   })
 })

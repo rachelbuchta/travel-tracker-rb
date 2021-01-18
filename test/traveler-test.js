@@ -10,10 +10,12 @@ import destinationData from '../src/data/destination-test-data'
 describe("Traveler",() => {
   let traveler;
   let traveler2;
+  let destinations;
 
   beforeEach(() => {
-    traveler = new Traveler(travelerData[0], tripsData);
-    traveler2 = new Traveler(travelerData[1], tripsData);
+    traveler = new Traveler(travelerData[0], tripsData, destinationData);
+    traveler2 = new Traveler(travelerData[1], tripsData, destinationData);
+    // destinations = new Destination(destinationData)
 
   });
 
@@ -54,7 +56,7 @@ describe("Traveler",() => {
     ([tripsData[0], tripsData[1], tripsData[2]])
   });
 
-  it('should instantiate and hold all trips for that traveler', () => {
+  it.skip('should instantiate and hold all trips for that traveler', () => {
 
     expect(traveler.instantiateNewTrips(tripsData)).to.deep.eq([tripsData[3], tripsData[4], tripsData[5]])
     expect(traveler.trips).to.deep.eq([tripsData[3], tripsData[4], tripsData[5]])
@@ -62,7 +64,7 @@ describe("Traveler",() => {
     expect(traveler2.trips).to.deep.eq([tripsData[0], tripsData[1], tripsData[2]])
   });
 
-  it('should filter users trips based on status', () => {
+  it.skip('should filter users trips based on status', () => {
 
     expect(traveler.filterByStatus("approved")).to.deep.eq([tripsData[4], tripsData[5]])
     
@@ -70,10 +72,10 @@ describe("Traveler",() => {
 
   });
 
-  it('should return trips they are currently on', () => {
+  it.skip('should return trips they are currently on', () => {
 
 
-    expect(traveler2.findCurrentTrips(tripsData)).to.deep.eq(tripsData[0])
+    expect(traveler2.findCurrentTrips()).to.deep.eq([tripsData[0]])
   });
 
   it('should return travelers first name', () => {
@@ -81,15 +83,20 @@ describe("Traveler",() => {
     expect(traveler.returnTravelerFirstName()).to.eq("Rachael")
   });
 
-  it('should return trips taken this year', () => {
+  it.only('should calculate total amount spent on trips this year', () => {
 
-    expect(traveler2.findTripsThisYear()).to.eq(tripsData[0])
+    expect(traveler2.calculateTotalSpentOnTrips(2020)).to.eq(33748)
+    expect(traveler.calculateTotalSpentOnTrips(2020)).to.eq(15862)
   })
 
-  it('should calculate total amount spent on trips this year', () => {
+  it.skip('should return past trips they were on', () => {
 
-    expect(traveler2.calculateTotalSpentOnTrips()).to.eq(4500)
-    expect(traveler.calculateTotalSpentOnTrips()).to.eq(0)
-  })
+    expect(traveler2.findPastTrips()).to.deep.eq([tripsData[1], tripsData[2]])
+  });
+
+  it('should return upcoming trips they have', () => {
+
+    expect(traveler2.findUpcomingTrips()).to.deep.eq([])
+  });
 
 });

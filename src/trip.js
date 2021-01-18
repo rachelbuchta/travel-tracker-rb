@@ -2,20 +2,20 @@
 import Destination from "./destination"
 
 export default class Trip {
-  constructor(tripsData) {
+  constructor(tripsData, destinationData) {
     this.id = tripsData.id;
     this.userID = tripsData.userID;
     this.destinationID = tripsData.destinationID;
     this.travelers = tripsData.travelers;
-    this.date = tripsData.date;
-    // this.date = this.formatDate(tripData.date);
+    this.date = this.formatDate(tripsData.date);
     this.duration = tripsData.duration;
     this.status = tripsData.status;
     this.suggestedActivities = tripsData.suggestedActivities;
+    this.destination = destinationData
   }
 
   findDestination(destinationData) {
-   return destinationData.find(destination => this.destinationID === destination.id)
+    return destinationData.find(destination => this.destinationID === destination.id)
   }
 
   calculateCostOfTrip(destinationData) {
@@ -28,7 +28,7 @@ export default class Trip {
 
   calculateAgentFee(destinationData) {
     const dollars = (this.calculateCostOfTrip(destinationData) / 100) * 10
-     return dollars
+    return dollars
   }
 
   costOfTripAndFee(destinationData) {
@@ -38,18 +38,18 @@ export default class Trip {
     }
   }
 
-// formatDate(tripDate) {
-//     let today = new Date(tripDate);
-//     let month = '' + (today.getMonth() + 1);
-//     let day = '' + today.getDate();
-//     let year = today.getFullYear();
-//     if (month.length < 2) {
-//       month = '0' + month
-//     }
-//     if (day.length < 2) {
-//       day = '0' + day
-//     }
-//     return [year, month, day].join("/");
-// }
+  formatDate(tripDate) {
+    let today = new Date(tripDate);
+    let month = '' + (today.getMonth() + 1);
+    let day = '' + today.getDate();
+    let year = today.getFullYear();
+    if (month.length < 2) {
+      month = '0' + month
+    }
+    if (day.length < 2) {
+      day = '0' + day
+    }
+    return [year, month, day].join("/");
+  }
 
 }
