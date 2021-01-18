@@ -60,7 +60,7 @@ pastTripsBtn.addEventListener('click', getPastTrips)
 submitBookingBtn.addEventListener('click', postData)
 
 function getData() {
-  travelerData = fetchCalls.getTraveler(5) 
+  travelerData = fetchCalls.getTraveler(9) 
   tripData = fetchCalls.getTrips() 
   destinationData = fetchCalls.getDestinations()
   allTravelerData = fetchCalls.getAllTravelers()
