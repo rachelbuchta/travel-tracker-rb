@@ -20,7 +20,7 @@ align-self: center;
 height: 20vh;
 background-color: #5296AC;
 width: 100%;
-color: #B0C6D5;
+color: #FEFEFE;
 
   .globe-image {
     justify-content: flex-start;
@@ -88,12 +88,16 @@ form {
     }
 }
 
+h2 {
+  color: black;
+}
+
 .welcome-container {
   @include flexDisplay(column, start);
   height: 80vh;
   align-items: center;
-  background-color: #EACDC0;
-  color: #FEFEFE;
+  background-color: #B0C6D5;
+  color: #6F8BA4;
 
 }
 
@@ -152,12 +156,15 @@ form {
 .my-trips-container {
   @include flexDisplay(column, start);
   height: 80vh;
-  
 }
 
 .my-trips-wrapper {
   display: flex;
   justify-content: center;
+}
+
+.my-trips-text {
+  color:#FEFEFE;
 }
 
 .header-wrapper {
