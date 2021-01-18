@@ -7,6 +7,8 @@ welcomeUser(currentUser) {
 },
 
 createTripCards(trips) {
+let cardDisplay = document.querySelector(".card-display")
+cardDisplay.innerHTML = "";
    return trips.map(trip => {
       let cardHTML = `
   <article class="trip-card">
@@ -21,7 +23,10 @@ createTripCards(trips) {
       <p class='flight-cost cost'>Estimated Flight Cost:${trip.flights}</p>
     </section>
   </article>`
-  document.querySelector(".card-display").insertAdjacentHTML("afterbegin", cardHTML)
+    document.querySelector(".card-display").insertAdjacentHTML("afterbegin", cardHTML)
+
+  //  document.querySelector(".card-display")
+  //  (".card-display").appendChild(cardHTML)
   })
 },
 
@@ -29,7 +34,6 @@ displayAmountSpentAYear(currentUser) {
   let costHTML = `<h3>You've spent ${currentUser} on making memories this year.` 
 document.querySelector(".header-wrapper").insertAdjacentHTML("beforeend", costHTML)
 }
-  
 
 }
 

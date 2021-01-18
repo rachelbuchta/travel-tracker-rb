@@ -11,7 +11,7 @@ body {
 }
 
 header {
-@include flexDisplay(column, start);
+@include gridDisplay(1fr 1fr, none);
 padding: 2%;
 justify-content: center;
 align-self: center;
@@ -19,13 +19,25 @@ height: 20vh;
 background-color: #5296AC;
 width: 100%;
 color: #B0C6D5;
+
+  .globe-image {
+    justify-content: flex-start;
+    height: 9em;
+    width: 5em;
+  }
+
+  h1 {
+    padding: 6%;
+    font-size: 3.4em;
+    justify-self: center;
+  }
 }
 
-h1 {
-  padding: 3%;
-  font-size: 3em;
-
+main {
+height: 80vh;
 }
+
+
 
 // img {
 //   height: 5em;
@@ -49,7 +61,8 @@ form {
 }
 
 .my-trips {
-  @include flexDisplay(column, center)
+  @include flexDisplay(column, center);
+  // height: 60vh;
 }
 
 .hidden {
@@ -59,6 +72,18 @@ form {
 .login-button {
  width: 30%;
  align-self: center;
+}
+
+.welcome-image-wrapper {
+  @include flexDisplay(column, center);
+  align-self: center;
+  height: 40em;
+  align-items: center;
+
+    .welcome-image {
+      height: 20em;
+      width: 20em;
+    }
 }
 
 .welcome-container {
@@ -79,14 +104,15 @@ form {
 
 .options-container {
   @include flexDisplay(row, center);
-  justify-content: space-around;
-  width: 50%;
+  justify-content: space-evenly;
+  width: 80%;
 
     .my-trips-btn,
     .book-trip {
       border: 3px outset #5296AC;
       border-radius: 15px 15px 15px 15px;
       padding: 1%;
+      width: 40%;
     }
 }
 
@@ -98,7 +124,7 @@ form {
   border-radius: 15px 15px 15px 15px;
   padding: 1%;
   width: 20%;
-  height: 20%;
+  // height: 20%;
 }
 
 .my-trips-container {
@@ -110,7 +136,7 @@ form {
 .header-wrapper {
   @include flexDisplay(column, start);
   justify-content: center;
-  align-items: center;
+  // align-items: center;
   height: 20%;
   background-color: #B0C6D5;
   color: #FEFEFE;
@@ -149,7 +175,9 @@ form {
 
 .trip-card-section {
  @include flexDisplay(column, center);
- width: 100%;
+//  width: 100%;
+//  margin: 2%;
+height: 80%;
  justify-content: space-around;
 }
 
@@ -157,12 +185,14 @@ form {
  @include flexDisplay(row, center);
  width: 100%;
  justify-content: space-around;
+ height: 5vh;
 }
 
 .card-display {
-@include flexDisplay(column, center);
-justify-content: center;
-width: 100%;
+@include flexDisplay(column, none);
+overflow: auto;
+height: 80%;
+// margin: 2%;
 align-items: center;
 }
 
@@ -176,7 +206,7 @@ align-items: center;
   width: 60%;
 }
 
-img {
+.card-image {
   height: 80%;
   width: 90%;
 }

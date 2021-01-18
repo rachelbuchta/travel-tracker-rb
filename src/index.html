@@ -8,6 +8,7 @@
   <body>
     <header>
       <h1>Travel Tracker</h1>
+      <img class='globe-image' src='./images/globe.svg' alt='plane flying around globe'></img>
     </header>
     <section class="login-page hidden" style="background-image: url('./images/image.png');">
       <form>
@@ -20,15 +21,14 @@
       <section class="welcome-page">
         <section class="welcome-container">
           <article class="greeting-container">
-            <!-- <h2>Welcome!</h2> -->
             <h2>Your Adventure Begins Here.</h2>
           </article>
           <section class="options-container">
             <button class="my-trips-btn">My Trips</button>
             <button class="book-trip">Book A Trip</button>
           </section>
-          <section class="welcome-image">
-            <img>
+          <section class="welcome-image-wrapper">
+            <img class='welcome-image' src='./images/man.jpg' alt='man looking at mountain'></img>
           </section>
         </section>
       </section>
@@ -40,8 +40,6 @@
               <button class="back-to-main">Back To Main</button>
             </div>
           </section>  
-      
-       
           <section class="trip-card-section">
             <section class ="trip-buttons-wrapper">
               <button class="current-trips-btn" id="current">Current 
@@ -49,8 +47,8 @@
               <button class="upcoming-trips-btn" id="approved">Upcoming Trips</button>
               <button class="past-trips-btn" id="past">Past Trips</button>
             </section>
-              <section class="card-display">
-              </section>
+            <section class="card-display">
+            </section>
           </section>
           </article>
           </section>

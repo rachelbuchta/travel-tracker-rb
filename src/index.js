@@ -8,7 +8,9 @@ import './css/base.scss';
 //images
 import './images/image.png';
 import domUpdates from './domUpdates.js';
+import './images/man.jpg'
 // import './images/search.png';
+import './images/globe.svg'
 
 //globalVariables
 let currentTraveler;
