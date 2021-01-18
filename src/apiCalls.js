@@ -30,7 +30,26 @@ const fetchCalls = {
       .catch(err => {
         alert("Sorry! We are having trouble getting the data, try again later!")
       })
+  },
+
+  postTrip(newBooking) {
+    return fetch('http://localhost:3001/api/v1/trips', {
+      method: 'POST',
+      headers: {
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify(newBooking)
+    })
+      .then(response => response.json())
+      .then((response) => {
+        console.log(response)
+        return response
+      })
+      .catch(error => console.log(error.message))
+      
   }
 }
+
+
 
 export default fetchCalls;

@@ -19,6 +19,7 @@ let domUpdates = {
         <img class='card-image image' src='${trip.image}' alt='${trip.alt}'></img>
       </section>  
       <section class="cost-wrapper">
+        <p class='status'>Trip Status:${trip.status}</p>
         <p class='lodging-cost cost'>Estimated Lodging Cost:${trip.lodging}</p>
         <p class='flight-cost cost'>Estimated Flight Cost:${trip.flights}</p>
       </section>
@@ -31,7 +32,8 @@ let domUpdates = {
     let costHTML = `<h3>You've spent ${currentUser} on making memories this year.` 
     document.querySelector(".header-wrapper").insertAdjacentHTML("beforeend", costHTML)
   }
-
 }
+
+
 
 export default domUpdates
