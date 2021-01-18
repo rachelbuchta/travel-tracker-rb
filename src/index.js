@@ -34,6 +34,8 @@ const backToMain = document.querySelector(".back-to-main")
 const backToMainBook = document.querySelector(".back-to-main-book")
 const bookingPage = document.querySelector(".book-trip-page")
 const submitBookingBtn = document.querySelector(".booking-button")
+const currentTripsBtn = document.querySelector(".current-trips-btn");
+
 
 //eventListeners
 window.addEventListener('load', getData)
@@ -42,9 +44,10 @@ myTripsBtn.addEventListener('click', hideMainPage)
 backToMain.addEventListener('click', goBackToMain)
 bookButton.addEventListener('click', bookATrip)
 backToMainBook.addEventListener('click', backToMainFromBook)
+currentTripsBtn.addEventListener('click', displayCurrentCards)
 
 function getData() {
- travelerData = fetchCalls.getTraveler(1) 
+ travelerData = fetchCalls.getTraveler(9) 
  tripData = fetchCalls.getTrips() 
  destinationData = fetchCalls.getDestinations()
  allTravelerData = fetchCalls.getAllTravelers()
@@ -63,7 +66,44 @@ function initiateData() {
 
 function greetUser(currentTraveler, tripInfo, allDestinations) {
   currentUser = new Traveler(currentTraveler, tripInfo, allDestinations)
-  domUpdates.welcomeUser(currentUser);
+//   allTrips = tripInfo.trips.forEach(trip => {
+//     let trips = new Trip(trip, allDestinations)
+//     allTrips.push(trips);
+// })
+ domUpdates.welcomeUser(currentUser);
+}
+
+function getCurrentTrips() {
+let currentTrips = currentUser.findCurrentTrips();
+let returnedCurrent = currentTrips.map(trip => {
+  const destination = trip.destination
+  const tripCard = {
+    name: destination.destination,
+    image: destination.image,
+    alt: destination.alt,
+    lodging: destination.estimatedLodgingCostPerDay,
+    flights: destination.estimatedFlightCostPerPerson
+    }
+  console.log(tripCard)
+  return tripCard
+})
+// console.log(destination)
+return returnedCurrent
+console.log(returnedCurrent)
+//map through returned current for each create card
+// domUpdates.createTripCards(returnedCurrent)
+}
+
+
+
+function displayCurrentCards() {
+  const allCurrent = getCurrentTrips()
+  console.log(allCurrent)
+  allCurrent.map(trip => {
+    console.log(trip)
+    domUpdates.createTripCards(trip)
+  })
+  
 }
 
 
@@ -71,26 +111,10 @@ function greetUser(currentTraveler, tripInfo, allDestinations) {
 
 
 
+
+
 function createDestinationCard() {
-        //   <div class="trip-card">
-        //   <img class='card-image image' src='./assets/hiphop3.jpg' alt='taylor swift'>
-        //   <div class="image-wrapper">
-        //     <img class="nav-icons share-image" src='./assets/next.svg' alt='share-icon'>
-        //     <div class="view-wrapper">
-        //       <p class='views view-count'>VIEWS</p>
-        //       <p class='count view-count'>02</p>
-        //     </div>
-        //   </div>
-        //   <section class='information'>
-        //     <h2 class='name'>Recipeint's Namehere</h2>
-        //       <p class='date'>Monday 01/23/16 10:22am</p>
-        //     <p class='sitelink'>"https://2win.2winstag.com/p/reci-pients_namehere"</p>
-        //     <h3>PLAYLIST</h3>
-        //       <h2 class='playlist-name'>Hip Hop</h2>
-        //     <h3 class='attachments'>ATTACHMENTS</h3>
-        //       <p class='number'>04</p>
-        //   </section>
-        // </div>
+
 }
 
 function hideLoginPage() {
