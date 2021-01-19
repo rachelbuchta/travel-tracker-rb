@@ -28,7 +28,8 @@ let allTravelerData
 let bookingObject; 
 
 //querySelectors
-const loginButton = document.querySelector(".login-button")
+// const loginButton = document.querySelector(".login-button")
+const loginForm = document.querySelector(".login-form")
 const loginPage = document.querySelector(".login-page")
 const welcomePage = document.querySelector(".welcome-page")
 const myTripsBtn = document.querySelector(".my-trips-btn")
@@ -52,8 +53,6 @@ const userPasswordInput = document.querySelector("#pwd")
 
 
 //eventListeners
-// window.addEventListener('load', getData)
-loginButton.addEventListener("click", hideLoginPage)
 myTripsBtn.addEventListener('click', hideMainPage)
 backToMain.addEventListener('click', goBackToMain)
 bookButton.addEventListener('click', bookATrip)
@@ -63,7 +62,7 @@ pendingTripsBtn.addEventListener('click', getPendingTrips)
 upcomingTripsBtn.addEventListener('click', getUpcomingTrips)
 pastTripsBtn.addEventListener('click', getPastTrips)
 submitBookingBtn.addEventListener('click', postData)
-loginButton.addEventListener('click', userLogin)
+loginForm.addEventListener('submit', userLogin)
 
 function getData(id) {
   travelerData = fetchCalls.getTraveler(id) 
@@ -78,14 +77,34 @@ function initiateData() {
       currentTraveler = responses[0];
       allDestinations = responses[1];
       tripInfo = responses[2];
-      greetUser(currentTraveler, tripInfo, allDestinations)
+     greetUser(currentTraveler, tripInfo, allDestinations)
     })
+    // .then(()=> {
+      
+    // })
+
+    
+  
 }
 
-function userLogin() {
+function userLogin(event) {
   let userName = parseInt(userLoginInput.value.split('').splice(8,3).join(''));
-  getData(userName)
-  let password = "traveler2020";
+  event.preventDefault()
+  if (userPasswordInput.value !== "traveler2020") {
+    alert("Wrong password, try again")
+    clearInputs(userPasswordInput)
+  }
+  if (userPasswordInput.value === "traveler2020") {
+    getData(userName)
+    hideLoginPage()
+  }
+}
+  
+
+
+function clearInputs(input) {
+  input.value = '';
+ 
 }
 
 function greetUser(currentTraveler, tripInfo, allDestinations) {
@@ -111,19 +130,6 @@ function formatTravelCard(trips) {
   return returnedCurrent
 }
 
-// function displayEstimatedCosts(event) {
-//     event.preventDefault()
-//     tripInfo.forEach((trip) => {
-//         destinationInfo.forEach(destination => {
-//             trip = new Trip(trip, destinationInfo);
-//             if (destinationsList.value === destination.destination) {
-//                 let durationValue = durationInput.value;
-//                 let travelersValue = travelersInput.value;
-//                 estimatedTripCost.innerText = `Your Estimated Trip Cost Is: $${trip.calculateEstimatedTripCost(destination, durationValue, travelersValue)}`;
-//             }
-//         })
-//     })
-// }
 
 function displayEstimatedCost(event) {
   event.preventDefault()
@@ -259,6 +265,9 @@ function hideLoginPage() {
   welcomePage.classList.remove("hidden")
   
 }
+
+
+
 
 function hideMainPage() {
   welcomePage.classList.add("hidden")

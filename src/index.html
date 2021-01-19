@@ -13,11 +13,12 @@
       <img class='globe-image' src='./images/globe.svg' alt='plane flying around globe'></img>
     </header>
       <section class="login-page">
-        <form class="login-form">
-          <input type="text" id="username" name="username" placeholder="Username"><br>
-          <input type="password" id="pwd" name="pwd" placeholder="Password"><br>
-          <input class="login-button" type="submit" value="Log In">
+        <form class="login-form" onsubmit="">
+          <input type="text" id="username" name="username" placeholder="Username" required><br>
+          <input type="password" id="pwd" name="pwd" placeholder="Password" required><br>
+          <button class="login-button" type="submit" value="Log In">Log In</button>
         </form>
+          <!-- <button class ="login-button">Login</button> -->
       </section>
     <main>
       <section class="welcome-page hidden">
@@ -64,7 +65,7 @@
           <section class="book-wrapper">
             <h2>Book A Trip</h2>
             <h3>Where Would You Like To Go Next?</h3>
-            <form class="booking-form">
+            <form class="booking-form" onsubmit="">
               <label for="destination">Destination:</label><br>
               <select class="trip-dropdown" name="destination" id="destination">
               </select><br>

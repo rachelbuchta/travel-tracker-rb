@@ -48,7 +48,7 @@ h3 {
   background-color: #B0C6D5;
 }
 
-form {
+login-form {
   @include flexDisplay(column, center);
   width: 50%;
   border: solid #CEA692 1em;
