@@ -14,6 +14,7 @@ import './images/curve-arrow.svg'
 
 //globalVariables
 let currentTraveler;
+let currentUserID;
 let allTrips = []
 let allDestinations;
 let allTravelers;
@@ -27,7 +28,8 @@ let allTravelerData
 let bookingObject; 
 
 //querySelectors
-const loginButton = document.querySelector(".login-button")
+// const loginButton = document.querySelector(".login-button")
+const loginForm = document.querySelector(".login-form")
 const loginPage = document.querySelector(".login-page")
 const welcomePage = document.querySelector(".welcome-page")
 const myTripsBtn = document.querySelector(".my-trips-btn")
@@ -44,11 +46,12 @@ const destinationInput = document.querySelector(".trip-dropdown")
 const startDate = document.querySelector("#calendar")
 const durationInput = document.querySelector("#duration")
 const numberOfTravelers = document.querySelector("#numtravelers")
-const submitBookingBtn = document.querySelector(".booking-button")
+// const bookingForm = document.querySelector(".booking-form")
+const submitBookingForm = document.querySelector(".booking-form")
+const userLoginInput = document.querySelector("#username")
+const userPasswordInput = document.querySelector("#pwd")
 
 //eventListeners
-window.addEventListener('load', getData)
-loginButton.addEventListener("click", hideLoginPage)
 myTripsBtn.addEventListener('click', hideMainPage)
 backToMain.addEventListener('click', goBackToMain)
 bookButton.addEventListener('click', bookATrip)
@@ -57,13 +60,13 @@ currentTripsBtn.addEventListener('click', getCurrentTrips)
 pendingTripsBtn.addEventListener('click', getPendingTrips)
 upcomingTripsBtn.addEventListener('click', getUpcomingTrips)
 pastTripsBtn.addEventListener('click', getPastTrips)
-submitBookingBtn.addEventListener('click', postData)
+submitBookingForm.addEventListener('submit', postData)
+loginForm.addEventListener('submit', userLogin)
 
-function getData() {
-  travelerData = fetchCalls.getTraveler(9) 
-  tripData = fetchCalls.getTrips() 
+function getData(id) {
+  travelerData = fetchCalls.getTraveler(id) 
   destinationData = fetchCalls.getDestinations()
-  allTravelerData = fetchCalls.getAllTravelers()
+  tripData = fetchCalls.getTrips() 
   initiateData()
 }
 
@@ -73,20 +76,32 @@ function initiateData() {
       currentTraveler = responses[0];
       allDestinations = responses[1];
       tripInfo = responses[2];
-      greetUser(currentTraveler, tripInfo, allDestinations)
+     greetUser(currentTraveler, tripInfo, allDestinations)
     })
+}
+
+function userLogin(event) {
+  let userName = parseInt(userLoginInput.value.split('').splice(8,3).join(''));
+  event.preventDefault()
+  if (userPasswordInput.value !== "traveler2020") {
+    alert("Wrong password, try again")
+    domUpdates.clearInputs(userPasswordInput)
+  }
+  if (userPasswordInput.value === "traveler2020") {
+    getData(userName)
+    domUpdates.hideLoginPage()
+  }
 }
 
 function greetUser(currentTraveler, tripInfo, allDestinations) {
   currentUser = new Traveler(currentTraveler, tripInfo, allDestinations)
   domUpdates.welcomeUser(currentUser);
   getCostSpentOverAYear(currentUser)
-  addDestinationOptions()
+  displayTripDropDown()
 }
 
 function formatTravelCard(trips) {
   let returnedCurrent = trips.map(trip => {
-    console.log(trip)
     const destination = trip.destination
     const tripCard = {
       name: destination.destination,
@@ -101,20 +116,37 @@ function formatTravelCard(trips) {
   return returnedCurrent
 }
 
-function postData(bookingObject) {
+function postData(event, bookingObject) {
   event.preventDefault()
   bookingObject = buildTripObject()
-  const test = fetchCalls.postTrip(bookingObject)
-  return test
+  fetchCalls.postTrip(bookingObject)
+  domUpdates.clearInputs(destinationInput)
+  domUpdates.clearInputs(startDate)
+  domUpdates.clearInputs(durationInput)
+  domUpdates.clearInputs(numberOfTravelers)
 }
 
+// function findDestinationCost() {
+// const test = findDestination()
+// console.log(test)
+// const please = currentUser.trips.filter(trip => {
+//   console.log(test)
+//   return trip.destinationID === test
+// console.log(trip.destinationID)
+// })
+
+// console.log(please)
+// return please
+
+// }
+
 function findDestination() {
-  const test = allDestinations.destinations.find(destination => {
+  const destinationRequest = allDestinations.destinations.find(destination => {
     if (destinationInput.value === destination.destination) {
       return destination.id
     }
   })
-  return test.id
+  return destinationRequest.id
 }
 
  function buildTripObject() {
@@ -131,19 +163,12 @@ function findDestination() {
     return bookingObject
   }
 
-  function sortDestinationsAlphabetically() {
+  function displayTripDropDown() {
     const alphabetically = allDestinations.destinations.map(destination => {
       let destinationName = destination.destination
       return destinationName
       })
-    return alphabetically.sort()
-  }
-
-  function addDestinationOptions() {
-     let options = sortDestinationsAlphabetically().map(destination => {
-       return `<option id="${destination.id}" value="${destination}">${destination}</option>`
-      })
-    document.querySelector(".trip-dropdown").insertAdjacentHTML("afterbegin",options)
+    return domUpdates.displayDestinationOptions(alphabetically.sort())
   }
 
 function getCurrentTrips() {
@@ -173,13 +198,6 @@ function displayCurrentCards(trips) {
 function getCostSpentOverAYear() {
   let cost = currentUser.calculateTotalSpentOnTrips(2020).toLocaleString("en-US", {style: "currency", currency: "USD"});
   domUpdates.displayAmountSpentAYear(cost)
-}
-
-function hideLoginPage() {
-  event.preventDefault()
-  loginPage.classList.add("hidden")
-  welcomePage.classList.remove("hidden")
-  
 }
 
 function hideMainPage() {
