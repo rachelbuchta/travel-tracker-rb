@@ -46,11 +46,10 @@ const destinationInput = document.querySelector(".trip-dropdown")
 const startDate = document.querySelector("#calendar")
 const durationInput = document.querySelector("#duration")
 const numberOfTravelers = document.querySelector("#numtravelers")
-const submitBookingBtn = document.querySelector(".booking-button")
+// const bookingForm = document.querySelector(".booking-form")
+const submitBookingForm = document.querySelector(".booking-form")
 const userLoginInput = document.querySelector("#username")
 const userPasswordInput = document.querySelector("#pwd")
-
-
 
 //eventListeners
 myTripsBtn.addEventListener('click', hideMainPage)
@@ -61,7 +60,7 @@ currentTripsBtn.addEventListener('click', getCurrentTrips)
 pendingTripsBtn.addEventListener('click', getPendingTrips)
 upcomingTripsBtn.addEventListener('click', getUpcomingTrips)
 pastTripsBtn.addEventListener('click', getPastTrips)
-submitBookingBtn.addEventListener('click', postData)
+submitBookingForm.addEventListener('submit', postData)
 loginForm.addEventListener('submit', userLogin)
 
 function getData(id) {
@@ -79,12 +78,6 @@ function initiateData() {
       tripInfo = responses[2];
      greetUser(currentTraveler, tripInfo, allDestinations)
     })
-    // .then(()=> {
-      
-    // })
-
-    
-  
 }
 
 function userLogin(event) {
@@ -92,26 +85,19 @@ function userLogin(event) {
   event.preventDefault()
   if (userPasswordInput.value !== "traveler2020") {
     alert("Wrong password, try again")
-    clearInputs(userPasswordInput)
+    domUpdates.clearInputs(userPasswordInput)
   }
   if (userPasswordInput.value === "traveler2020") {
     getData(userName)
-    hideLoginPage()
+    domUpdates.hideLoginPage()
   }
-}
-  
-
-
-function clearInputs(input) {
-  input.value = '';
- 
 }
 
 function greetUser(currentTraveler, tripInfo, allDestinations) {
   currentUser = new Traveler(currentTraveler, tripInfo, allDestinations)
   domUpdates.welcomeUser(currentUser);
   getCostSpentOverAYear(currentUser)
-  addDestinationOptions()
+  displayTripDropDown()
 }
 
 function formatTravelCard(trips) {
@@ -130,75 +116,37 @@ function formatTravelCard(trips) {
   return returnedCurrent
 }
 
-
-function displayEstimatedCost(event) {
+function postData(event, bookingObject) {
   event.preventDefault()
-  // console.log(findDestination())
-  // console.log(findDestinationCost(findDestination()))
-  // console.log(tripInfo.trips)
-  // console.log(allDestinations.destinations)
-  //  let test = tripInfo.trips.forEach(trip => {
-  
-  //     allDestinations.destinations.forEach(destination => {
-  //       trip = new Trip(trip, allDestinations)
-  //           // console.log(trip)
-  //           console.log("input",destinationInput.value)
-  //           console.log("destinationID",trip.destinationID)
-  //       if (destinationInput.value === destination.destination) {
-  //         // console.log(trip)
-  //         // console.log(destination)
-      
-  //         console.log(trip.costOfTripAndFee())
-  //       }
-  //     })
-  //  })
-}
-
-      
-    
-  //   console.log(test)
-  // return test
-
-
-function postData(bookingObject) {
-  event.preventDefault()
-  // console.log(currentUser.trips)
   bookingObject = buildTripObject()
-  // console.log(bookingObject.destinationID)
-  // const destID = findDestinationCost(bookingObject.destinationID)
-  // console.log(destID)
   fetchCalls.postTrip(bookingObject)
-  findDestinationCost()
-  // displayEstimatedCost(event)
-  // const test = domUpdates.displayEstimatedTripCost(currentUser)
-  // console.log(test)
+  domUpdates.clearInputs(destinationInput)
+  domUpdates.clearInputs(startDate)
+  domUpdates.clearInputs(durationInput)
+  domUpdates.clearInputs(numberOfTravelers)
 }
 
-function findDestinationCost() {
+// function findDestinationCost() {
+// const test = findDestination()
+// console.log(test)
+// const please = currentUser.trips.filter(trip => {
+//   console.log(test)
+//   return trip.destinationID === test
+// console.log(trip.destinationID)
+// })
 
-// const trip = currentUser.trips.find(trip => trip.destinationID === id)
-const test = findDestination()
-console.log(test)
-const please = currentUser.trips.filter(trip => {
-  console.log(test)
-  return trip.destinationID === test
-console.log(trip.destinationID)
-})
+// console.log(please)
+// return please
 
-console.log(please)
-return please
-// console.log(trip.costOfTripAndFee())
-}
+// }
 
 function findDestination() {
-  const test = allDestinations.destinations.find(destination => {
+  const destinationRequest = allDestinations.destinations.find(destination => {
     if (destinationInput.value === destination.destination) {
       return destination.id
     }
   })
-  console.log(test.id)
-  // findDestinationCost()
-  return test.id
+  return destinationRequest.id
 }
 
  function buildTripObject() {
@@ -215,19 +163,12 @@ function findDestination() {
     return bookingObject
   }
 
-  function sortDestinationsAlphabetically() {
+  function displayTripDropDown() {
     const alphabetically = allDestinations.destinations.map(destination => {
       let destinationName = destination.destination
       return destinationName
       })
-    return alphabetically.sort()
-  }
-
-  function addDestinationOptions() {
-     let options = sortDestinationsAlphabetically().map(destination => {
-       return `<option id="${destination.id}" value="${destination}">${destination}</option>`
-      })
-    document.querySelector(".trip-dropdown").insertAdjacentHTML("afterbegin",options)
+    return domUpdates.displayDestinationOptions(alphabetically.sort())
   }
 
 function getCurrentTrips() {
@@ -258,16 +199,6 @@ function getCostSpentOverAYear() {
   let cost = currentUser.calculateTotalSpentOnTrips(2020).toLocaleString("en-US", {style: "currency", currency: "USD"});
   domUpdates.displayAmountSpentAYear(cost)
 }
-
-function hideLoginPage() {
-  event.preventDefault()
-  loginPage.classList.add("hidden")
-  welcomePage.classList.remove("hidden")
-  
-}
-
-
-
 
 function hideMainPage() {
   welcomePage.classList.add("hidden")

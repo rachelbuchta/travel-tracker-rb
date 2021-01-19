@@ -33,12 +33,29 @@ let domUpdates = {
     document.querySelector(".header-wrapper").insertAdjacentHTML("beforeend", costHTML)
   },
 
+  displayDestinationOptions(destinations) {
+    let options = destinations.map(destination => {
+       return `<option id="${destination.id}" value="${destination}">${destination}</option>`
+      })
+    document.querySelector(".trip-dropdown").insertAdjacentHTML("afterbegin",options)
+  },
+
   displayEstimatedTripCost(currentUser) {
     let estimatedCost = `<h3>${currentUser.costOfTripAndFee}</h3>`
     document.querySelector(".booking-form").insertAdjacentHTML("beforeend", estimatedCost)
-  }
+  },
+
+  clearInputs(input) {
+    input.value = '';
+  },
+
+  hideLoginPage() {
+    event.preventDefault()
+    const loginPage = document.querySelector(".login-page")
+    const welcomePage = document.querySelector(".welcome-page")
+    loginPage.classList.add("hidden")
+    welcomePage.classList.remove("hidden")
+  },
 }
-
-
 
 export default domUpdates
