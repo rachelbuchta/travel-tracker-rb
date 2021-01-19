@@ -15,26 +15,31 @@ export default class Trip {
   }
 
   findDestination(destinationData) {
-    return destinationData.find(destination => this.destinationID === destination.id)
+    console.log(destinationData)
+    return this.destination.id 
+    // return destinationData.destinations.find(destination => this.destinationID === destination.id)
   }
 
-  calculateCostOfTrip(destinationData) {
-    const currentDestination = this.findDestination(destinationData)
-    const costPerDay = currentDestination.estimatedLodgingCostPerDay * this.travelers
+  calculateCostOfTrip() {
+    // const currentDestination = this.findDestination(destinationData)
+    console.log(this.destinationID)
+    const costPerDay = this.destination.estimatedLodgingCostPerDay * this.travelers
     const duration = costPerDay * this.duration
-    const flights = currentDestination.estimatedFlightCostPerPerson * this.travelers
+    const flights = this.destination.estimatedFlightCostPerPerson * this.travelers
+    console.log(duration + flights)
     return duration + flights
   }
 
-  calculateAgentFee(destinationData) {
-    const dollars = (this.calculateCostOfTrip(destinationData) / 100) * 10
+  calculateAgentFee() {
+    const dollars = (this.calculateCostOfTrip() / 100) * 10
+    console.log(dollars)
     return dollars
   }
 
-  costOfTripAndFee(destinationData) {
+  costOfTripAndFee() {
     return {
-      total: this.calculateCostOfTrip(destinationData),
-      totalPlusFees: this.calculateAgentFee(destinationData) + this.calculateCostOfTrip(destinationData)
+      total: this.calculateCostOfTrip(),
+      totalPlusFees: this.calculateAgentFee() + this.calculateCostOfTrip()
     }
   }
 

@@ -12,14 +12,13 @@
       <h1>Travel Tracker</h1>
       <img class='globe-image' src='./images/globe.svg' alt='plane flying around globe'></img>
     </header>
-    <!-- <section class="login-page" style="background-image: url('./images/image.png');"> -->
-    <section class="login-page">
-      <form class="login-form">
-        <input type="text" id="username" name="username" placeholder="Username"><br>
-        <input type="password" id="pwd" name="pwd" placeholder="Password"><br>
-        <input class="login-button" type="submit" value="Log In">
-      </form>
-    </section>
+      <section class="login-page">
+        <form class="login-form">
+          <input type="text" id="username" name="username" placeholder="Username"><br>
+          <input type="password" id="pwd" name="pwd" placeholder="Password"><br>
+          <input class="login-button" type="submit" value="Log In">
+        </form>
+      </section>
     <main>
       <section class="welcome-page hidden">
         <section class="welcome-container">
@@ -37,10 +36,10 @@
       </section>
       <section class="my-trips hidden">
         <article class="my-trips-container">
+          <div class="arrow-wrapper">
+            <img class="back-to-main" src='./images/curve-arrow.svg'></img>
+          </div>
           <section class="header-wrapper">
-            <div class="arrow-wrapper">
-              <img class="back-to-main" src='./images/curve-arrow.svg'></img>
-            </div>
             <div class="my-trips-wrapper">
               <h2 class="my-trips-text">My Trips</h2>
             </div>
@@ -59,12 +58,12 @@
           </section>
         </article>
         <section class="book-trip-page hidden">
+          <div class="arrow-wrapper">
+            <img class="back-to-main-book" src='./images/curve-arrow.svg'></img>
+          </div>
           <section class="book-wrapper">
             <h2>Book A Trip</h2>
-            <div>
-              <button class="back-to-main-book">Back To Main</button>
-            </div>
-              <h3>Where Would You Like To Go Next?</h3>
+            <h3>Where Would You Like To Go Next?</h3>
             <form class="booking-form">
               <label for="destination">Destination:</label><br>
               <select class="trip-dropdown" name="destination" id="destination">
@@ -76,10 +75,9 @@
               <label for="travelers">Number Of Travelers:</label><br>
               <input type="number" id="numtravelers" name="numtravelers">
               </select><br>
-              <button class="booking-button">Book!</button>
-              <!-- <input class="booking-button" type="submit" value="Book!"> -->
+              <input class="booking-button" type="submit" value="Book!">
             </form>
-            
+            <button class="confirm-button">Book!</button>
            </section>
           </section>
         </article>

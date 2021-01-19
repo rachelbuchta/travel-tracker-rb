@@ -29,8 +29,13 @@ let domUpdates = {
   },
 
   displayAmountSpentAYear(currentUser) {
-    let costHTML = `<h3>You've spent ${currentUser} on making memories this year.` 
+    let costHTML = `<h3 class="year-cost">You've spent ${currentUser} on making memories this year.` 
     document.querySelector(".header-wrapper").insertAdjacentHTML("beforeend", costHTML)
+  },
+
+  displayEstimatedTripCost(currentUser) {
+    let estimatedCost = `<h3>${currentUser.costOfTripAndFee}</h3>`
+    document.querySelector(".booking-form").insertAdjacentHTML("beforeend", estimatedCost)
   }
 }
 

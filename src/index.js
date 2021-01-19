@@ -50,6 +50,7 @@ const userLoginInput = document.querySelector("#username")
 const userPasswordInput = document.querySelector("#pwd")
 
 
+
 //eventListeners
 // window.addEventListener('load', getData)
 loginButton.addEventListener("click", hideLoginPage)
@@ -78,7 +79,6 @@ function initiateData() {
       allDestinations = responses[1];
       tripInfo = responses[2];
       greetUser(currentTraveler, tripInfo, allDestinations)
-
     })
 }
 
@@ -86,7 +86,6 @@ function userLogin() {
   let userName = parseInt(userLoginInput.value.split('').splice(8,3).join(''));
   getData(userName)
   let password = "traveler2020";
-  
 }
 
 function greetUser(currentTraveler, tripInfo, allDestinations) {
@@ -98,7 +97,6 @@ function greetUser(currentTraveler, tripInfo, allDestinations) {
 
 function formatTravelCard(trips) {
   let returnedCurrent = trips.map(trip => {
-    console.log(trip)
     const destination = trip.destination
     const tripCard = {
       name: destination.destination,
@@ -113,11 +111,77 @@ function formatTravelCard(trips) {
   return returnedCurrent
 }
 
+// function displayEstimatedCosts(event) {
+//     event.preventDefault()
+//     tripInfo.forEach((trip) => {
+//         destinationInfo.forEach(destination => {
+//             trip = new Trip(trip, destinationInfo);
+//             if (destinationsList.value === destination.destination) {
+//                 let durationValue = durationInput.value;
+//                 let travelersValue = travelersInput.value;
+//                 estimatedTripCost.innerText = `Your Estimated Trip Cost Is: $${trip.calculateEstimatedTripCost(destination, durationValue, travelersValue)}`;
+//             }
+//         })
+//     })
+// }
+
+function displayEstimatedCost(event) {
+  event.preventDefault()
+  // console.log(findDestination())
+  // console.log(findDestinationCost(findDestination()))
+  // console.log(tripInfo.trips)
+  // console.log(allDestinations.destinations)
+  //  let test = tripInfo.trips.forEach(trip => {
+  
+  //     allDestinations.destinations.forEach(destination => {
+  //       trip = new Trip(trip, allDestinations)
+  //           // console.log(trip)
+  //           console.log("input",destinationInput.value)
+  //           console.log("destinationID",trip.destinationID)
+  //       if (destinationInput.value === destination.destination) {
+  //         // console.log(trip)
+  //         // console.log(destination)
+      
+  //         console.log(trip.costOfTripAndFee())
+  //       }
+  //     })
+  //  })
+}
+
+      
+    
+  //   console.log(test)
+  // return test
+
+
 function postData(bookingObject) {
   event.preventDefault()
+  // console.log(currentUser.trips)
   bookingObject = buildTripObject()
-  const test = fetchCalls.postTrip(bookingObject)
-  return test
+  // console.log(bookingObject.destinationID)
+  // const destID = findDestinationCost(bookingObject.destinationID)
+  // console.log(destID)
+  fetchCalls.postTrip(bookingObject)
+  findDestinationCost()
+  // displayEstimatedCost(event)
+  // const test = domUpdates.displayEstimatedTripCost(currentUser)
+  // console.log(test)
+}
+
+function findDestinationCost() {
+
+// const trip = currentUser.trips.find(trip => trip.destinationID === id)
+const test = findDestination()
+console.log(test)
+const please = currentUser.trips.filter(trip => {
+  console.log(test)
+  return trip.destinationID === test
+console.log(trip.destinationID)
+})
+
+console.log(please)
+return please
+// console.log(trip.costOfTripAndFee())
 }
 
 function findDestination() {
@@ -126,6 +190,8 @@ function findDestination() {
       return destination.id
     }
   })
+  console.log(test.id)
+  // findDestinationCost()
   return test.id
 }
 

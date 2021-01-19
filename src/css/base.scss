@@ -13,10 +13,10 @@ body {
 }
 
 header {
-@include gridDisplay(1fr 1fr, none);
-padding: 2%;
-justify-content: center;
-align-self: center;
+@include gridDisplay(1fr 2fr, none);
+// padding: 2%;
+// justify-content: center;
+// align-self: center;
 height: 20vh;
 background-color: #5296AC;
 width: 100%;
@@ -29,14 +29,10 @@ color: #FEFEFE;
   }
 
   h1 {
-    padding: 6%;
-    font-size: 3.4em;
+    padding: 5%;
+    font-size: 3em;
     justify-self: center;
   }
-}
-
-main {
-height: 80vh;
 }
 
 h3 {
@@ -48,17 +44,19 @@ h3 {
   height: 80vh;
   width: 100%;
   align-items: center;
+  border: black;
   background-color: #B0C6D5;
 }
 
 form {
   @include flexDisplay(column, center);
-  width: 50%
-
+  width: 50%;
+  border: solid #CEA692 1em;
+  box-shadow: 0 0 10px #5296AC;
 }
 
 .login-form {
-  height:100%
+  height:50%
 }
 
 .welcome-page {
@@ -76,6 +74,7 @@ form {
 .login-button {
  width: 30%;
  align-self: center;
+
 
 }
 
@@ -144,7 +143,8 @@ h2 {
 }
 
 .booking-button,
- button {
+ button,
+ .login-button {
   border: 3px outset #5296AC;
   border-radius: 15px 15px 15px 15px;
   padding: 1%;
@@ -167,40 +167,56 @@ h2 {
 .my-trips-wrapper {
   display: flex;
   justify-content: center;
+  height: 3em;
+  margin-top: -2%;
 }
 
 .my-trips-text {
-  color:#FEFEFE;
+  color: black;
+}
+
+.arrow-wrapper {
+  background-color: #B0C6D5;
+  padding: .7%;
+}
+
+.arrow {
+  padding: 2%;
+}
+
+.year-cost {
+  justify-content: center;
+  align-self: center;
 }
 
 .header-wrapper {
   @include flexDisplay(column, center);
   justify-content: center;
-  height: 20%;
+  // height: 20%;
   background-color: #B0C6D5;
-  color: #FEFEFE;
 }
 
 .trip-card-section {
   @include flexDisplay(row, start);
   justify-content: space-around;
-  background-color: #EACDC0;
-  height: 80%;
+  background-color: #B0C6D5;
+  height: 80vh;
   color: #FEFEFE;
 }
 
 .book-trip-page {
   height: 80vh;
-  background-color: #EACDC0;
+  background-color: #B0C6D5;
 }
 
 .book-wrapper {
   @include flexDisplay(column, center);
   align-items: center;
-  color: #FEFEFE;
+  color: black;
   justify-items: center;
   justify-content: center;
-  background-color: #EACDC0;
+  background-color: #B0C6D5;
+  height: 70%;
 
 }
 
@@ -208,6 +224,7 @@ form {
   justify-content: center;
   align-items: center;
   width: 50%;
+  border-radius: 2%;
 }
 
 .trip-card-section {
