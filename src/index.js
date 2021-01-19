@@ -14,6 +14,7 @@ import './images/curve-arrow.svg'
 
 //globalVariables
 let currentTraveler;
+let currentUserID;
 let allTrips = []
 let allDestinations;
 let allTravelers;
@@ -45,9 +46,12 @@ const startDate = document.querySelector("#calendar")
 const durationInput = document.querySelector("#duration")
 const numberOfTravelers = document.querySelector("#numtravelers")
 const submitBookingBtn = document.querySelector(".booking-button")
+const userLoginInput = document.querySelector("#username")
+const userPasswordInput = document.querySelector("#pwd")
+
 
 //eventListeners
-window.addEventListener('load', getData)
+// window.addEventListener('load', getData)
 loginButton.addEventListener("click", hideLoginPage)
 myTripsBtn.addEventListener('click', hideMainPage)
 backToMain.addEventListener('click', goBackToMain)
@@ -58,12 +62,12 @@ pendingTripsBtn.addEventListener('click', getPendingTrips)
 upcomingTripsBtn.addEventListener('click', getUpcomingTrips)
 pastTripsBtn.addEventListener('click', getPastTrips)
 submitBookingBtn.addEventListener('click', postData)
+loginButton.addEventListener('click', userLogin)
 
-function getData() {
-  travelerData = fetchCalls.getTraveler(9) 
-  tripData = fetchCalls.getTrips() 
+function getData(id) {
+  travelerData = fetchCalls.getTraveler(id) 
   destinationData = fetchCalls.getDestinations()
-  allTravelerData = fetchCalls.getAllTravelers()
+  tripData = fetchCalls.getTrips() 
   initiateData()
 }
 
@@ -74,7 +78,15 @@ function initiateData() {
       allDestinations = responses[1];
       tripInfo = responses[2];
       greetUser(currentTraveler, tripInfo, allDestinations)
+
     })
+}
+
+function userLogin() {
+  let userName = parseInt(userLoginInput.value.split('').splice(8,3).join(''));
+  getData(userName)
+  let password = "traveler2020";
+  
 }
 
 function greetUser(currentTraveler, tripInfo, allDestinations) {
