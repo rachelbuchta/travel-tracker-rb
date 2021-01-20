@@ -43,6 +43,7 @@ const userLoginInput = document.querySelector("#username");
 const userPasswordInput = document.querySelector("#pwd");
 const confirmButton = document.querySelector(".confirm-button");
 const confirmMessage = document.querySelector(".confirm-message");
+const cancelButton = document.querySelector(".cancel-button")
 
 //eventListeners
 myTripsBtn.addEventListener("click", hideMainPage);
@@ -56,6 +57,7 @@ pastTripsBtn.addEventListener("click", getPastTrips);
 submitBookingForm.addEventListener("submit", displayModal);
 loginForm.addEventListener("submit", userLogin);
 confirmButton.addEventListener("click", confirmBooking);
+cancelButton.addEventListener("click", cancelRequest)
 
 function getData(id) {
   travelerData = fetchCalls.getTraveler(id);
@@ -131,9 +133,13 @@ function displayModal(event) {
   domUpdates.displayCost(bookingObject);
 }
 
+function cancelRequest() {
+  confirmMessage.classList.add("hidden");
+  submitBookingForm.classList.remove("hidden");
+}
+
 function confirmBooking(event) {
   event.preventDefault();
-  console.log(bookingObject);
   fetchCalls.postTrip(bookingObject)
     .then(getData(userName))
     .then(showTripsPage)
@@ -223,6 +229,7 @@ function goBackToMain() {
 function bookATrip() {
   welcomePage.classList.add("hidden");
   bookingPage.classList.remove("hidden");
+  submitBookingForm.classList.remove("hidden");
 }
 
 function backToMainFromBook() {
