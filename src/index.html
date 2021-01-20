@@ -9,7 +9,7 @@
   </head>
   <body>
     <header>
-      <h1>Travel Tracker</h1>
+      <h1><span>Travel</span>Tracker</h1>
       <img class='globe-image' src='./images/globe.svg' alt='plane flying around globe'></img>
     </header>
       <section class="login-page">
@@ -18,7 +18,6 @@
           <input type="password" id="pwd" name="pwd" placeholder="Password" required><br>
           <button class="login-button" type="submit" value="Log In">Log In</button>
         </form>
-          <!-- <button class ="login-button">Login</button> -->
       </section>
     <main>
       <section class="welcome-page hidden">
@@ -47,10 +46,10 @@
           </section>  
           <section class="trip-card-section">
             <section class ="trip-buttons-wrapper">
-              <button class="current-trips-btn" id="current">Current 
-              <button class="pending-trips-btn" id="pending">Pending Trips</button>
-              <button class="upcoming-trips-btn" id="approved">Upcoming Trips</button>
-              <button class="past-trips-btn" id="past">Past Trips</button>
+              <button class="current-trips-btn btn" id="current">Current 
+              <button class="pending-trips-btn btn" id="pending">Pending Trips</button>
+              <button class="upcoming-trips-btn btn" id="approved">Upcoming Trips</button>
+              <button class="past-trips-btn btn" id="past">Past Trips</button>
             </section>
             <section class="card-display">
             </section>
@@ -63,22 +62,26 @@
             <img class="back-to-main-book" src='./images/curve-arrow.svg'></img>
           </div>
           <section class="book-wrapper">
-            <h2>Book A Trip</h2>
-            <h3>Where Would You Like To Go Next?</h3>
             <form class="booking-form" onsubmit="">
               <label for="destination">Destination:</label><br>
               <select class="trip-dropdown" name="destination" id="destination">
               </select><br>
               <label for="start">Start date:</label><br>
-              <input type="date" id="calendar" name="date"></input><br>
+              <input type="date" id="calendar" name="date" required></input><br>
               <label for="duration">Duration:</label><br>
-              <input type="number" id="duration" name="duration"><br>
+              <input type="number" id="duration" name="duration" required><br>
               <label for="travelers">Number Of Travelers:</label><br>
-              <input type="number" id="numtravelers" name="numtravelers">
+              <input type="number" id="numtravelers" name="numtravelers" required>
               </select><br>
               <button class="booking-button" type="submit" value="Book!">Book!</button>
             </form>
-            <!-- <button class="confirm-button">Book!</button> -->
+            <section class="confirm-message hidden">
+              <article class="cost-modal">
+                <p class="cost"></p>
+                <button class="confirm-button">Confirm</button>
+                <button class="cancel-button">Cancel</button>
+              </article>
+            </section>
            </section>
           </section>
         </article>

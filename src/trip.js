@@ -1,6 +1,4 @@
 /* eslint-disable max-len */
-import Destination from "./destination"
-
 export default class Trip {
   constructor(tripsData, destinationData) {
     this.id = tripsData.id;
@@ -8,6 +6,7 @@ export default class Trip {
     this.destinationID = tripsData.destinationID;
     this.travelers = tripsData.travelers;
     this.date = this.formatDate(tripsData.date);
+    this.date = tripsData.date;
     this.duration = tripsData.duration;
     this.status = tripsData.status;
     this.suggestedActivities = tripsData.suggestedActivities;
@@ -15,24 +14,18 @@ export default class Trip {
   }
 
   findDestination(destinationData) {
-    console.log(destinationData)
-    return this.destination.id 
-    // return destinationData.destinations.find(destination => this.destinationID === destination.id)
+    return destinationData.find(destination => this.destinationID === destination.id)
   }
 
   calculateCostOfTrip() {
-    // const currentDestination = this.findDestination(destinationData)
-    console.log(this.destinationID)
     const costPerDay = this.destination.estimatedLodgingCostPerDay * this.travelers
     const duration = costPerDay * this.duration
     const flights = this.destination.estimatedFlightCostPerPerson * this.travelers
-    console.log(duration + flights)
     return duration + flights
   }
 
   calculateAgentFee() {
     const dollars = (this.calculateCostOfTrip() / 100) * 10
-    console.log(dollars)
     return dollars
   }
 

@@ -1,3 +1,6 @@
+$primary-color: #B0C6D5;
+$shadow-color: 0 0 10px #5296AC;
+
 @mixin transition($value) {
   transition: $value;
 }
