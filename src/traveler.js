@@ -7,8 +7,8 @@ export default class Traveler {
     this.id = travelerData.id;
     this.name = travelerData.name;
     this.travelerType = travelerData.travelerType;
-    this.destinationData = destinationData.destinations;
-    this.tripsData = tripsData.trips;
+    this.destinationData = destinationData;
+    this.tripsData = tripsData;
     this.trips = this.instantiateNewTrips() || [];
   }
 

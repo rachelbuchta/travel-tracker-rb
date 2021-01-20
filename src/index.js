@@ -52,8 +52,6 @@ const userPasswordInput = document.querySelector("#pwd")
 const confirmButton = document.querySelector(".confirm-button")
 const confirmMessage = document.querySelector(".confirm-message")
 
-
-
 //eventListeners
 myTripsBtn.addEventListener('click', hideMainPage)
 backToMain.addEventListener('click', goBackToMain)
@@ -78,8 +76,8 @@ function initiateData() {
   return Promise.all([travelerData, destinationData, tripData])
     .then(responses => {
       currentTraveler = responses[0];
-      allDestinations = responses[1];
-      tripInfo = responses[2];
+      allDestinations = responses[1].destinations;
+      tripInfo = responses[2].trips;
      greetUser(currentTraveler, tripInfo, allDestinations)
     })
 }
@@ -121,13 +119,22 @@ function formatTravelCard(trips) {
 }
 
 function findDestination() {
-  const destinationRequest = allDestinations.destinations.find(destination => {
+  const destinationRequest = allDestinations.find(destination => {
     if (destinationInput.value === destination.destination) {
       return destination.id
     }
   })
   return destinationRequest.id
 }
+
+// function findDestination() {
+//   const destinationRequest = allDestinations.destinations.find(destination => {
+//     if (destinationInput.value === destination.destination) {
+//       return destination.id
+//     }
+//   })
+//   return destinationRequest.id
+// }
 
 function displayModal(event) {
   event.preventDefault()
@@ -171,7 +178,7 @@ function showTripsPage() {
   }
 
   function getEstimatedTripCost(numberOfTravelers, duration) {
-    const currentDestinationCost = allDestinations.destinations.reduce((sum, destination) => {
+    const currentDestinationCost = allDestinations.reduce((sum, destination) => {
       if (destinationInput.value === destination.destination) {
          const flights = destination.estimatedFlightCostPerPerson * numberOfTravelers;
          const lodging = destination.estimatedLodgingCostPerDay * duration;
@@ -180,12 +187,20 @@ function showTripsPage() {
     }
     return sum
     },0)
-    
+    console.log(currentDestinationCost)
   return currentDestinationCost.toLocaleString("en-US", {style: "currency", currency: "USD"});
   }
 
-  function displayTripDropDown() {
-    const alphabetically = allDestinations.destinations.map(destination => {
+  // function displayTripDropDown() {
+  //   const alphabetically = allDestinations.destinations.map(destination => {
+  //     let destinationName = destination.destination
+  //     return destinationName
+  //     })
+  //   return domUpdates.displayDestinationOptions(alphabetically.sort())
+  // }
+
+    function displayTripDropDown() {
+    const alphabetically = allDestinations.map(destination => {
       let destinationName = destination.destination
       return destinationName
       })

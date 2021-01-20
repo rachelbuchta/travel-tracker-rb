@@ -63,7 +63,7 @@ let domUpdates = {
 
   displayCost(bookingObject) {
     const costDisplay = document.querySelector(".cost")
-    costDisplay.innerHTML = `This trip will cost ${bookingObject.cost}. Would you like to proceed?`
+    costDisplay.innerHTML = `This trip will cost ${bookingObject.cost}, and includes a 10% agent fee. Would you like to proceed?`
   }
 }
 
