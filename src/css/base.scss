@@ -13,7 +13,7 @@ body {
 }
 
 header {
-@include gridDisplay(1fr 2fr, none);
+@include gridDisplay(1fr 4fr, none);
 height: 20vh;
 background-color: #5296AC;
 width: 100%;
@@ -27,8 +27,9 @@ color: #FEFEFE;
 
   h1 {
     padding: 5%;
-    font-size: 3em;
+    font-size: 2.8em;
     justify-self: center;
+    justify-content: end;
   }
 }
 
@@ -130,7 +131,7 @@ h2 {
       border: 3px outset $primary-color;
       border-radius: 15px 15px 15px 15px;
       padding: 1%;
-      width: 40%;
+      width: 30%;
       cursor: pointer;
 
           &:hover {
@@ -281,4 +282,48 @@ align-items: center;
   font-size: 1.5em;
   text-align: center;
   margin: 1%;
+}
+
+@media only screen and (max-width: 800px) {
+.login-form {
+  width:80%;
+}
+.welcome-image-wrapper {
+  height: 40em;
+
+  .welcome-image {
+
+    width: 35em;
+  }
+}
+}
+
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: 1.5em;
+  }
+  .login-button {
+    width: 60%;
+  }
+
+  #pwd,
+  #username {
+    width: 90vw;
+  }
+
+.welcome-image-wrapper {
+  height: 40em;
+
+  .welcome-image {
+    width: 23em;
+  }
+}
+
+.year-cost {
+  text-align: center;
+}
+
+.btn {
+  height: 25;
+}
 }

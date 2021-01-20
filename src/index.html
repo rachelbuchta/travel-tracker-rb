@@ -9,7 +9,7 @@
   </head>
   <body>
     <header>
-      <h1>Travel Tracker</h1>
+      <h1><span>Travel</span>Tracker</h1>
       <img class='globe-image' src='./images/globe.svg' alt='plane flying around globe'></img>
     </header>
       <section class="login-page">
@@ -67,11 +67,11 @@
               <select class="trip-dropdown" name="destination" id="destination">
               </select><br>
               <label for="start">Start date:</label><br>
-              <input type="date" id="calendar" name="date"></input><br>
+              <input type="date" id="calendar" name="date" required></input><br>
               <label for="duration">Duration:</label><br>
-              <input type="number" id="duration" name="duration"><br>
+              <input type="number" id="duration" name="duration" required><br>
               <label for="travelers">Number Of Travelers:</label><br>
-              <input type="number" id="numtravelers" name="numtravelers">
+              <input type="number" id="numtravelers" name="numtravelers" required>
               </select><br>
               <button class="booking-button" type="submit" value="Book!">Book!</button>
             </form>
