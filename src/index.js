@@ -53,6 +53,7 @@ const userLoginInput = document.querySelector("#username")
 const userPasswordInput = document.querySelector("#pwd")
 const confirmButton = document.querySelector(".confirm-button")
 const confirmMessage = document.querySelector(".confirm-message")
+const costDisplay = document.querySelector(".cost")
 
 
 //eventListeners
@@ -67,9 +68,6 @@ pastTripsBtn.addEventListener('click', getPastTrips)
 submitBookingForm.addEventListener('submit', displayModal)
 loginForm.addEventListener('submit', userLogin)
 confirmButton.addEventListener('click', confirmBooking)
-
-
-
 
 function getData(id) {
   travelerData = fetchCalls.getTraveler(id) 
@@ -130,7 +128,7 @@ function findDestination() {
       return destination.id
     }
   })
-  console.log(destinationRequest.id)
+  console.log(destinationRequest)
   return destinationRequest.id
 }
 
@@ -138,25 +136,17 @@ function displayModal(event) {
   event.preventDefault()
   buildTripObject()
   confirmMessage.classList.remove("hidden")
-  
-  // domUpdates.displayEstimatedCost()
   domUpdates.clearInputs(destinationInput)
   domUpdates.clearInputs(startDate)
   domUpdates.clearInputs(durationInput)
   domUpdates.clearInputs(numberOfTravelers)
-  confirmMessage.classList.remove("hidden")
-  // bookingPage.classList.add("hidden")
+  displayCost()
 }
 
-// function postData(event, bookingObject) {
-//   event.preventDefault()
- 
-//   fetchCalls.postTrip(bookingObject)
-//   domUpdates.clearInputs(destinationInput)
-//   domUpdates.clearInputs(startDate)
-//   domUpdates.clearInputs(durationInput)
-//   domUpdates.clearInputs(numberOfTravelers)
-// }
+function displayCost() {
+  costDisplay.innerHTML = `This trip will cost ${bookingObject.cost}`
+}
+
 
 
 function confirmBooking(event) {
@@ -174,28 +164,6 @@ function showTripsPage() {
 }
 
 
-
-
-
-
-
-
-// function findDestinationCost() {
-// const test = findDestination()
-// console.log(test)
-// const please = currentUser.trips.filter(trip => {
-//   console.log(test)
-//   return trip.destinationID === test
-// console.log(trip.destinationID)
-// })
-
-// console.log(please)
-// return please
-
-// }
-
-
-
  function buildTripObject() {
      bookingObject = {
       id: Number(Date.now()),
@@ -205,9 +173,23 @@ function showTripsPage() {
       date: startDate.value.split("-").join("/"),
       duration: parseInt(durationInput.value),
       status: "pending",
-      suggestedActivities: []
+      suggestedActivities: [],
+      cost: getEstimatedTripCost(numberOfTravelers.value, durationInput.value)
     }
-    // return bookingObject
+  }
+
+  function getEstimatedTripCost(numberOfTravelers, duration) {
+    const currentDestinationCost = allDestinations.destinations.reduce((sum, destination) => {
+      if (destinationInput.value === destination.destination) {
+         const flights = destination.estimatedFlightCostPerPerson * numberOfTravelers;
+         const lodging = destination.estimatedLodgingCostPerDay * duration;
+         const agentFee = ((flights + lodging) * .01)
+         sum += flights + lodging + agentFee
+    }
+    return sum.toLocaleString("en-US", {style: "currency", currency: "USD"});
+    },0)
+    
+  return currentDestinationCost
   }
 
   function displayTripDropDown() {

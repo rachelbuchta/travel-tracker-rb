@@ -1,9 +1,11 @@
 let domUpdates = {
 
   welcomeUser(currentUser) {
+    let greetingMessage = document.querySelector(".greeting-container");
     let firstName = currentUser.returnTravelerFirstName();
+    greetingMessage.innerHTML = "";
     let welcomeMsg = `<h2>Welcome Back, ${firstName}! </h2>`
-    document.querySelector(".greeting-container").insertAdjacentHTML("afterbegin", welcomeMsg)
+    greetingMessage.insertAdjacentHTML("afterbegin", welcomeMsg)
   },
 
   createTripCards(trips) {
@@ -28,19 +30,11 @@ let domUpdates = {
     })
   },
 
-  // displayEstimatedCost() {
-  //   const confirmModal = `
-  //   <article class="cost">
-  //     <p>This trip will cost</p>
-  //     <button class="confirm-button">Confirm!</button>
-  //   </article>`
-  // document.querySelector(".confirm-message").insertAdjacentHTML("beforeend", confirmModal)
-
-  // },
-
   displayAmountSpentAYear(currentUser) {
+    let yearlyDisplay = document.querySelector(".header-wrapper")
+    yearlyDisplay.innerHTML = ""
     let costHTML = `<h3 class="year-cost">You've spent ${currentUser} on making memories this year.` 
-    document.querySelector(".header-wrapper").insertAdjacentHTML("beforeend", costHTML)
+    yearlyDisplay.insertAdjacentHTML("beforeend", costHTML)
   },
 
   displayDestinationOptions(destinations) {
