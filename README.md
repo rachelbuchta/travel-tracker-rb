@@ -31,7 +31,7 @@ OR visit the live site [here](https://rachelbuchta.github.io/travel-tracker-rb/)
 
 ## Technologies And Skills
 
-This appliction is made using:
+This application is made using:
 * Semantic HTML5, CSS3/ SCSS including media queries so that is can be viewed across a variety of screens.
 * ES6 Javascript, classes and iterator methods.
 * Webpack for bundling and production build.
