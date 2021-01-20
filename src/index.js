@@ -134,6 +134,7 @@ function displayModal(event) {
 }
 
 function cancelRequest() {
+  alert("You have cancelled your trip request.")
   confirmMessage.classList.add("hidden");
   submitBookingForm.classList.remove("hidden");
 }
@@ -142,8 +143,9 @@ function confirmBooking(event) {
   event.preventDefault();
   fetchCalls.postTrip(bookingObject)
     .then(getData(userName))
+    .then(alert(`Congrats! Your trip is booked! You will see this booking in your pending trips.`))
     .then(showTripsPage)
-  alert(`Congrats! Your trip is booked! You will see this booking in your pending trips.`);
+  
 }
 
 function showTripsPage() {
