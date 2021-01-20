@@ -5,7 +5,7 @@ import Trip from "../src/trip";
 import tripsData from "../src/data/trip-test-data"
 import destinationData from "../src/data/destination-test-data"
 
-describe("Trip",() => {
+describe("Trip", () => {
   let currentTrip;
 
 
@@ -61,7 +61,7 @@ describe("Trip",() => {
 
   it("should find the destination data by the id", () => {
 
-  expect(currentTrip.findDestination(destinationData)).to.deep.eq(destinationData[0]);
+    expect(currentTrip.findDestination(destinationData)).to.deep.eq(destinationData[0]);
   });
 
   it("should calculate total cost of trip for that destination", () => { 
@@ -81,7 +81,7 @@ describe("Trip",() => {
 
   it("should reformat the date property", () => {
 
-  expect(currentTrip.formatDate(currentTrip.date)).to.eq("2021/01/15");
+    expect(currentTrip.formatDate(currentTrip.date)).to.eq("2021/01/15");
   });
 
 });
