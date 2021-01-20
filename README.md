@@ -22,6 +22,8 @@ This application is used to keep track of your travels - past, present and futur
 6. Run npm install
 7. Run `npm start` in both repos and navigate to localhost 8080 in your browser
 
+OR visit the live site [here](https://rachelbuchta.github.io/travel-tracker-rb/)
+
 ## To Login
 
 * Username: traveler + any number 1 - 50
