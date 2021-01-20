@@ -123,14 +123,19 @@ function findDestination() {
 
 function displayModal(event) {
   event.preventDefault();
+  // debugger
   buildTripObject();
+  clearBookingInputs();
+  submitBookingForm.classList.add("hidden");
   confirmMessage.classList.remove("hidden");
+  domUpdates.displayCost(bookingObject);
+}
+
+function clearBookingInputs() {
   domUpdates.clearInputs(destinationInput);
   domUpdates.clearInputs(startDate);
   domUpdates.clearInputs(durationInput);
   domUpdates.clearInputs(numberOfTravelers);
-  submitBookingForm.classList.add("hidden");
-  domUpdates.displayCost(bookingObject);
 }
 
 function cancelRequest() {
@@ -142,16 +147,17 @@ function cancelRequest() {
 function confirmBooking(event) {
   event.preventDefault();
   fetchCalls.postTrip(bookingObject)
-    .then(getData(userName))
     .then(alert(`Congrats! Your trip is booked! You will see this booking in your pending trips.`))
-    .then(showTripsPage)
-  
+    .then(domUpdates.clearCardDisplay())
+    .then(showTripsPage())
+    .then(getData(userName))
 }
 
 function showTripsPage() {
-  myTripsPage.classList.remove("hidden");
+  domUpdates.clearCardDisplay();
   bookingPage.classList.add("hidden");
   confirmMessage.classList.add("hidden");
+  myTripsPage.classList.remove("hidden");
 }
 
 function buildTripObject() {
@@ -166,6 +172,7 @@ function buildTripObject() {
     suggestedActivities: [],
     cost: getEstimatedTripCost(numberOfTravelers.value, durationInput.value)
   }
+  clearBookingInputs()
 }
 
 function getEstimatedTripCost(numberOfTravelers, duration) {
@@ -219,6 +226,7 @@ function getCostSpentOverAYear() {
 }
 
 function hideMainPage() {
+  domUpdates.clearCardDisplay();
   welcomePage.classList.add("hidden");
   myTripsPage.classList.remove("hidden");
 }

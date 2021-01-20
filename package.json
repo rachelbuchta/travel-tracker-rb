@@ -7,11 +7,13 @@
     "start": "webpack-dev-server",
     "build": "webpack",
     "test": "mochapack 'test/**/*.js'",
-    "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'"
+    "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/turingschool-examples/webpack-starter-kit.git"
+    "url": "git+https://github.com/rachelbuchta/travel-tracker-rb.git"
   },
   "author": "Turing School of Software and Design",
   "license": "MIT",
@@ -20,6 +22,7 @@
     "css-loader": "^5.0.1",
     "eslint": "^7.17.0",
     "file-loader": "^6.2.0",
+    "gh-pages": "^3.1.0",
     "html-webpack-plugin": "^4.5.1",
     "mocha": "^8.2.1",
     "mochapack": "^2.0.6",
@@ -30,5 +33,6 @@
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14"
   },
+  "homepage": "http://rachelbuchta.github.io/travel-tracker-rb",
   "dependencies": {}
 }

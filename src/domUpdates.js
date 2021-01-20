@@ -10,8 +10,7 @@ let domUpdates = {
   },
 
   createTripCards(trips) {
-    let cardDisplay = document.querySelector(".card-display");
-    cardDisplay.innerHTML = "";
+    this.clearCardDisplay()
     return trips.map(trip => {
       let cardHTML = `
     <article class="trip-card">
@@ -31,6 +30,11 @@ let domUpdates = {
     });
   },
 
+  clearCardDisplay() {
+    let cardDisplay = document.querySelector(".card-display");
+    cardDisplay.innerHTML = "";
+  },
+
   displayAmountSpentAYear(currentUser) {
     let yearlyDisplay = document.querySelector(".header-wrapper");
     yearlyDisplay.innerHTML = "";
@@ -39,10 +43,12 @@ let domUpdates = {
   },
 
   displayDestinationOptions(destinations) {
+    let dropDown = document.querySelector(".trip-dropdown");
+    dropDown.innerHTML = "";
     let options = destinations.map(destination => {
       return `<option id="${destination.id}" value="${destination}">${destination}</option>`
     });
-    document.querySelector(".trip-dropdown").insertAdjacentHTML("afterbegin",options);
+    dropDown.insertAdjacentHTML("afterbegin",options);
   },
 
   displayEstimatedTripCost(currentUser) {
@@ -57,7 +63,6 @@ let domUpdates = {
   },
 
   hideLoginPage() {
-    event.preventDefault();
     const loginPage = document.querySelector(".login-page");
     const welcomePage = document.querySelector(".welcome-page");
     loginPage.classList.add("hidden");
@@ -66,6 +71,7 @@ let domUpdates = {
 
   displayCost(bookingObject) {
     const costDisplay = document.querySelector(".cost");
+    costDisplay.innerHTML = "";
     costDisplay.innerHTML = `This trip will cost ${bookingObject.cost}, and includes a 10% agent fee. Would you like to proceed?`
   }
 }
