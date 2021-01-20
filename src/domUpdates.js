@@ -28,6 +28,16 @@ let domUpdates = {
     })
   },
 
+  // displayEstimatedCost() {
+  //   const confirmModal = `
+  //   <article class="cost">
+  //     <p>This trip will cost</p>
+  //     <button class="confirm-button">Confirm!</button>
+  //   </article>`
+  // document.querySelector(".confirm-message").insertAdjacentHTML("beforeend", confirmModal)
+
+  // },
+
   displayAmountSpentAYear(currentUser) {
     let costHTML = `<h3 class="year-cost">You've spent ${currentUser} on making memories this year.` 
     document.querySelector(".header-wrapper").insertAdjacentHTML("beforeend", costHTML)

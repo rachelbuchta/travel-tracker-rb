@@ -14,6 +14,7 @@ import './images/curve-arrow.svg'
 
 //globalVariables
 let currentTraveler;
+let userName;
 let currentUserID;
 let allTrips = []
 let allDestinations;
@@ -50,6 +51,9 @@ const numberOfTravelers = document.querySelector("#numtravelers")
 const submitBookingForm = document.querySelector(".booking-form")
 const userLoginInput = document.querySelector("#username")
 const userPasswordInput = document.querySelector("#pwd")
+const confirmButton = document.querySelector(".confirm-button")
+const confirmMessage = document.querySelector(".confirm-message")
+
 
 //eventListeners
 myTripsBtn.addEventListener('click', hideMainPage)
@@ -60,8 +64,12 @@ currentTripsBtn.addEventListener('click', getCurrentTrips)
 pendingTripsBtn.addEventListener('click', getPendingTrips)
 upcomingTripsBtn.addEventListener('click', getUpcomingTrips)
 pastTripsBtn.addEventListener('click', getPastTrips)
-submitBookingForm.addEventListener('submit', postData)
+submitBookingForm.addEventListener('submit', displayModal)
 loginForm.addEventListener('submit', userLogin)
+confirmButton.addEventListener('click', confirmBooking)
+
+
+
 
 function getData(id) {
   travelerData = fetchCalls.getTraveler(id) 
@@ -81,7 +89,7 @@ function initiateData() {
 }
 
 function userLogin(event) {
-  let userName = parseInt(userLoginInput.value.split('').splice(8,3).join(''));
+   userName = parseInt(userLoginInput.value.split('').splice(8,3).join(''));
   event.preventDefault()
   if (userPasswordInput.value !== "traveler2020") {
     alert("Wrong password, try again")
@@ -116,15 +124,61 @@ function formatTravelCard(trips) {
   return returnedCurrent
 }
 
-function postData(event, bookingObject) {
+function findDestination() {
+  const destinationRequest = allDestinations.destinations.find(destination => {
+    if (destinationInput.value === destination.destination) {
+      return destination.id
+    }
+  })
+  console.log(destinationRequest.id)
+  return destinationRequest.id
+}
+
+function displayModal(event) {
   event.preventDefault()
-  bookingObject = buildTripObject()
-  fetchCalls.postTrip(bookingObject)
+  buildTripObject()
+  confirmMessage.classList.remove("hidden")
+  
+  // domUpdates.displayEstimatedCost()
   domUpdates.clearInputs(destinationInput)
   domUpdates.clearInputs(startDate)
   domUpdates.clearInputs(durationInput)
   domUpdates.clearInputs(numberOfTravelers)
+  confirmMessage.classList.remove("hidden")
+  // bookingPage.classList.add("hidden")
 }
+
+// function postData(event, bookingObject) {
+//   event.preventDefault()
+ 
+//   fetchCalls.postTrip(bookingObject)
+//   domUpdates.clearInputs(destinationInput)
+//   domUpdates.clearInputs(startDate)
+//   domUpdates.clearInputs(durationInput)
+//   domUpdates.clearInputs(numberOfTravelers)
+// }
+
+
+function confirmBooking(event) {
+  event.preventDefault()
+  console.log(bookingObject)
+  fetchCalls.postTrip(bookingObject)
+    .then(getData(userName))
+    .then(showTripsPage)
+  }
+
+function showTripsPage() {
+  myTripsPage.classList.remove("hidden")
+  bookingPage.classList.add("hidden")
+  confirmMessage.classList.add("hidden")
+}
+
+
+
+
+
+
+
 
 // function findDestinationCost() {
 // const test = findDestination()
@@ -140,14 +194,7 @@ function postData(event, bookingObject) {
 
 // }
 
-function findDestination() {
-  const destinationRequest = allDestinations.destinations.find(destination => {
-    if (destinationInput.value === destination.destination) {
-      return destination.id
-    }
-  })
-  return destinationRequest.id
-}
+
 
  function buildTripObject() {
      bookingObject = {
@@ -160,7 +207,7 @@ function findDestination() {
       status: "pending",
       suggestedActivities: []
     }
-    return bookingObject
+    // return bookingObject
   }
 
   function displayTripDropDown() {
