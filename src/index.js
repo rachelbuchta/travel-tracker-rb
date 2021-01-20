@@ -43,7 +43,7 @@ const userLoginInput = document.querySelector("#username");
 const userPasswordInput = document.querySelector("#pwd");
 const confirmButton = document.querySelector(".confirm-button");
 const confirmMessage = document.querySelector(".confirm-message");
-const cancelButton = document.querySelector(".cancel-button")
+const cancelButton = document.querySelector(".cancel-button");
 
 //eventListeners
 myTripsBtn.addEventListener("click", hideMainPage);
@@ -123,7 +123,6 @@ function findDestination() {
 
 function displayModal(event) {
   event.preventDefault();
-  // debugger
   buildTripObject();
   clearBookingInputs();
   submitBookingForm.classList.add("hidden");
@@ -178,10 +177,11 @@ function buildTripObject() {
 function getEstimatedTripCost(numberOfTravelers, duration) {
   const currentDestinationCost = allDestinations.reduce((sum, destination) => {
     if (destinationInput.value === destination.destination) {
+      const costPerDay = destination.estimatedLodgingCostPerDay * numberOfTravelers;
+      const days = costPerDay * duration;
       const flights = destination.estimatedFlightCostPerPerson * numberOfTravelers;
-      const lodging = destination.estimatedLodgingCostPerDay * duration;
-      const agentFee = ((flights + lodging) * .01);
-      sum += flights + lodging + agentFee;
+      const agentFee = ((flights + days) * .01);
+      sum += flights + days + agentFee;
     }
     return sum;
   }, 0);
@@ -231,7 +231,8 @@ function hideMainPage() {
   myTripsPage.classList.remove("hidden");
 }
 
-function goBackToMain() {
+function goBackToMain(event) {
+  event.preventDefault()
   welcomePage.classList.remove("hidden");
   myTripsPage.classList.add("hidden");
 }
@@ -240,6 +241,7 @@ function bookATrip() {
   welcomePage.classList.add("hidden");
   bookingPage.classList.remove("hidden");
   submitBookingForm.classList.remove("hidden");
+  confirmMessage.classList.add("hidden")
 }
 
 function backToMainFromBook() {
