@@ -29,7 +29,6 @@ let allTravelerData
 let bookingObject; 
 
 //querySelectors
-// const loginButton = document.querySelector(".login-button")
 const loginForm = document.querySelector(".login-form")
 const loginPage = document.querySelector(".login-page")
 const welcomePage = document.querySelector(".welcome-page")
@@ -47,13 +46,12 @@ const destinationInput = document.querySelector(".trip-dropdown")
 const startDate = document.querySelector("#calendar")
 const durationInput = document.querySelector("#duration")
 const numberOfTravelers = document.querySelector("#numtravelers")
-// const bookingForm = document.querySelector(".booking-form")
 const submitBookingForm = document.querySelector(".booking-form")
 const userLoginInput = document.querySelector("#username")
 const userPasswordInput = document.querySelector("#pwd")
 const confirmButton = document.querySelector(".confirm-button")
 const confirmMessage = document.querySelector(".confirm-message")
-const costDisplay = document.querySelector(".cost")
+
 
 
 //eventListeners
@@ -128,7 +126,6 @@ function findDestination() {
       return destination.id
     }
   })
-  console.log(destinationRequest)
   return destinationRequest.id
 }
 
@@ -140,14 +137,9 @@ function displayModal(event) {
   domUpdates.clearInputs(startDate)
   domUpdates.clearInputs(durationInput)
   domUpdates.clearInputs(numberOfTravelers)
-  displayCost()
+  submitBookingForm.classList.add("hidden")
+  domUpdates.displayCost(bookingObject)
 }
-
-function displayCost() {
-  costDisplay.innerHTML = `This trip will cost ${bookingObject.cost}`
-}
-
-
 
 function confirmBooking(event) {
   event.preventDefault()
@@ -155,6 +147,7 @@ function confirmBooking(event) {
   fetchCalls.postTrip(bookingObject)
     .then(getData(userName))
     .then(showTripsPage)
+    alert(`Congrats! Your trip is booked! You will see this booking in your pending trips.`)
   }
 
 function showTripsPage() {
@@ -162,7 +155,6 @@ function showTripsPage() {
   bookingPage.classList.add("hidden")
   confirmMessage.classList.add("hidden")
 }
-
 
  function buildTripObject() {
      bookingObject = {
@@ -186,10 +178,10 @@ function showTripsPage() {
          const agentFee = ((flights + lodging) * .01)
          sum += flights + lodging + agentFee
     }
-    return sum.toLocaleString("en-US", {style: "currency", currency: "USD"});
+    return sum
     },0)
     
-  return currentDestinationCost
+  return currentDestinationCost.toLocaleString("en-US", {style: "currency", currency: "USD"});
   }
 
   function displayTripDropDown() {
@@ -242,6 +234,8 @@ function goBackToMain() {
 function bookATrip() {
   welcomePage.classList.add("hidden")
   bookingPage.classList.remove("hidden")
+  // submitBookingForm.classList.remove("hidden")
+  // confirmMessage.classList.add("hidden")
 }
 
 function backToMainFromBook() {

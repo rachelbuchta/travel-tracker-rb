@@ -60,6 +60,11 @@ let domUpdates = {
     loginPage.classList.add("hidden")
     welcomePage.classList.remove("hidden")
   },
+
+  displayCost(bookingObject) {
+    const costDisplay = document.querySelector(".cost")
+    costDisplay.innerHTML = `This trip will cost ${bookingObject.cost}. Would you like to proceed?`
+  }
 }
 
 export default domUpdates

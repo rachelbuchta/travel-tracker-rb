@@ -18,7 +18,6 @@
           <input type="password" id="pwd" name="pwd" placeholder="Password" required><br>
           <button class="login-button" type="submit" value="Log In">Log In</button>
         </form>
-          <!-- <button class ="login-button">Login</button> -->
       </section>
     <main>
       <section class="welcome-page hidden">
@@ -63,8 +62,6 @@
             <img class="back-to-main-book" src='./images/curve-arrow.svg'></img>
           </div>
           <section class="book-wrapper">
-            <h2>Book A Trip</h2>
-            <h3>Where Would You Like To Go Next?</h3>
             <form class="booking-form" onsubmit="">
               <label for="destination">Destination:</label><br>
               <select class="trip-dropdown" name="destination" id="destination">
@@ -78,14 +75,13 @@
               </select><br>
               <button class="booking-button" type="submit" value="Book!">Book!</button>
             </form>
-            <section class="confirm-message hidden">//
-              <article>
+            <section class="confirm-message hidden">
+              <article class="cost-modal">
                 <p class="cost"></p>
-                <button class="confirm-button">Confirm!</button>
+                <button class="confirm-button">Confirm</button>
                 <button class="cancel-button">Cancel</button>
               </article>
             </section>
-            <!-- <button class="confirm-button">Book!</button> -->
            </section>
           </section>
         </article>
