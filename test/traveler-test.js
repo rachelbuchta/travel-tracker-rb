@@ -6,7 +6,7 @@ import travelerData from "../src/data/traveler-test-data";
 import tripsData from "../src/data/trip-test-data";
 import destinationData from "../src/data/destination-test-data";
 
-describe.only("Traveler", () => {
+describe("Traveler", () => {
   let traveler;
   let traveler2;
 
