@@ -5,7 +5,7 @@ const fetchCalls = {
       .then(response => response.json())
       .catch(err => {
         alert("Sorry! We are having trouble getting the data, try again later!")
-      })
+      });
   },
 
   getAllTravelers() {
@@ -13,7 +13,7 @@ const fetchCalls = {
       .then(response => response.json())
       .catch(err => {
         alert("Sorry! We are having trouble getting the data, try again later!")
-      })
+      });
   },
 
   getTrips() {
@@ -21,7 +21,7 @@ const fetchCalls = {
       .then(response => response.json())
       .catch(err => {
         alert("Sorry! We are having trouble getting the data, try again later!")
-      })
+      });
   },
 
   getDestinations() {
@@ -29,27 +29,25 @@ const fetchCalls = {
       .then(response => response.json())
       .catch(err => {
         alert("Sorry! We are having trouble getting the data, try again later!")
-      })
+      });
   },
 
   postTrip(newBooking) {
-    return fetch('http://localhost:3001/api/v1/trips', {
-      method: 'POST',
+    return fetch("http://localhost:3001/api/v1/trips", {
+      method: "POST",
       headers: {
-        'Content-Type':'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(newBooking)
     })
       .then(response => response.json())
       .then((response) => {
-        console.log(response)
-        return response
+        console.log(response);
+        return response;
       })
       .catch(error => console.log(error.message))
       
   }
 }
-
-
 
 export default fetchCalls;

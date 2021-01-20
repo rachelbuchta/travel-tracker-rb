@@ -36,12 +36,6 @@ h3 {
   justify-self: center;
 }
 
-// .active,
-// .btn:hover {
-//   background-color: #CEA692;
-//   color: #fdfdff;
-// }
-
 .login-page {
   @include flexDisplay(column, center);
   height: 80vh;
