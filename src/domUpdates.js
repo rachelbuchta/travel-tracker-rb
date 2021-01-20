@@ -46,8 +46,10 @@ let domUpdates = {
   },
 
   displayEstimatedTripCost(currentUser) {
+    let costDisplay = document.querySelector(".booking-form");
+    costDisplay.innerHTML = "";
     let estimatedCost = `<h3>${currentUser.costOfTripAndFee}</h3>`
-    document.querySelector(".booking-form").insertAdjacentHTML("beforeend", estimatedCost);
+    costDisplay.insertAdjacentHTML("beforeend", estimatedCost);
   },
 
   clearInputs(input) {

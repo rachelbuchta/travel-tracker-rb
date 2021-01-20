@@ -278,10 +278,17 @@ align-items: center;
   @extend .booking-form;
   align-items: center;
   justify-content: center;
-  height: 30vh;
-  width: 30vw;
+  height: 50vh;
+  width: 50vw;
   font-size: 1.5em;
   text-align: center;
+  margin: 1%;
+}
+
+.confirm-button,
+.cancel-button {
+  width: 25%;
+  height: 15%;
   margin: 1%;
 }
 
@@ -289,14 +296,23 @@ align-items: center;
 .login-form {
   width:80%;
 }
+
 .welcome-image-wrapper {
   height: 40em;
 
   .welcome-image {
-
     width: 35em;
   }
 }
+
+.confirm-button,
+.cancel-button {
+  width: 45%;
+  height: 15%;
+  margin: 1%;
+}
+
+
 }
 
 @media only screen and (max-width: 600px) {
@@ -330,5 +346,9 @@ align-items: center;
 
 .trip-card {
   width: 80%;
+}
+
+.trip-dropdown {
+  width:50%;
 }
 }
